@@ -12,7 +12,7 @@ export const sectionsCss = `.st {
 }
 .st *, .st *::before, .st *::after { box-sizing: border-box; }
 .st img { max-width: 100%; height: auto; display: block; }
-.st a { color: inherit; }
+.st :where(a) { color: inherit; }
 .st :focus-visible { outline: 2px solid var(--st-ink); outline-offset: 3px; }
 
 .st-in { width: 100%; max-width: var(--st-width); margin: 0 auto; padding: 0 40px; }
@@ -59,8 +59,8 @@ export const sectionsCss = `.st {
 .st-textlink { color: var(--st-ink); font-size: 15px; text-underline-offset: 4px; }
 
 .st-news { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
-.st-form { display: flex; gap: 8px; flex: 1 1 360px; max-width: 460px; margin: 0; }
-.st-input { flex: 1; min-width: 0; height: 48px; padding: 0 14px; border: 1px solid var(--st-field-border, var(--st-ink-2)); border-radius: var(--st-radius); background: var(--st-surface); color: var(--st-ink); font: 400 15px/1 var(--st-font-body); }
+.st-form { display: flex; gap: 8px; flex: 1 1 360px; min-width: 0; max-width: 460px; margin: 0; }
+.st-input { flex: 1; width: 0; min-width: 0; height: 48px; padding: 0 14px; border: 1px solid var(--st-field-border, var(--st-ink-2)); border-radius: var(--st-radius); background: var(--st-surface); color: var(--st-ink); font: 400 15px/1 var(--st-font-body); }
 
 .st-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid var(--st-line); font-size: 13px; color: var(--st-ink-2); }
 .st-foot ul { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; padding: 0; list-style: none; }

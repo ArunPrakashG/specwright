@@ -1,3 +1,8 @@
+import Anthropic from "@anthropic-ai/sdk";
+import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
+import { z } from "zod";
+import { MODEL } from "./draft.ts";
+
 export type TriageLabel = "copy" | "design" | "bug" | "scope";
 
 export interface Triage {
@@ -18,4 +23,39 @@ const RULES: [TriageLabel, RegExp][] = [
 export function triageByRules(body: string): Triage {
   for (const [label, re] of RULES) if (re.test(body)) return { label, needsQuote: label === "scope", source: "rules" };
   return { label: "design", needsQuote: false, source: "rules" };
+}
+
+const TriageSchema = z.object({
+  label: z.enum(["copy", "design", "bug", "scope"]),
+  needsQuote: z.boolean(),
+});
+
+/**
+ * Label a client comment with the model when a key is configured, otherwise with rules.
+ * Any API failure falls back to rules: triage must never block a comment.
+ */
+export async function triageComment(body: string, context: { specId: string; scope?: string }, client?: Anthropic): Promise<Triage> {
+  if (!client && !process.env.ANTHROPIC_API_KEY) return triageByRules(body);
+  try {
+    const response = await (client ?? new Anthropic()).beta.messages.parse({
+      model: MODEL,
+      max_tokens: 2000,
+      output_config: { effort: "low", format: betaZodOutputFormat(TriageSchema) },
+      betas: ["server-side-fallback-2026-07-01"],
+      fallbacks: "default",
+      system:
+        "You sort client feedback on a store design for the agency that built it. Labels: copy (wording), design (visual), bug (something broken), scope (a new feature or change outside what was agreed). needsQuote is true only for scope.",
+      messages: [
+        {
+          role: "user",
+          content: `Element: ${context.specId}\n${context.scope ? `Agreed scope: ${context.scope}\n` : ""}Comment: ${body}`,
+        },
+      ],
+    });
+    const parsed = response.parsed_output;
+    if (response.stop_reason === "refusal" || !parsed) return triageByRules(body);
+    return { label: parsed.label, needsQuote: parsed.needsQuote || parsed.label === "scope", source: "model" };
+  } catch {
+    return triageByRules(body);
+  }
 }

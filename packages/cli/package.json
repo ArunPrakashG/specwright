@@ -18,6 +18,7 @@
     "@specwright/sections": "workspace:*",
     "@specwright/spec": "workspace:*",
     "tsx": "^4.19.2",
-    "@specwright/db": "workspace:*"
+    "@specwright/db": "workspace:*",
+    "@specwright/ai": "workspace:*"
   }
 }

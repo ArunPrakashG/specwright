@@ -186,7 +186,7 @@ export async function queue() {
     boss = new PgBoss(process.env.DATABASE_URL ?? "postgres://specwright:specwright@localhost:5433/specwright");
     boss.on("error", (e) => console.error("[queue]", e));
     await boss.start();
-    await boss.createQueue(BUILD_QUEUE);
+    await boss.createQueue(BUILD_QUEUE, { expireInSeconds: 3600, retryLimit: 0 });
   }
   return boss;
 }

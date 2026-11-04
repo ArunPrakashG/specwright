@@ -4,11 +4,16 @@
   "description": "Model-backed helpers: draft a spec from a brief, triage review comments. Bring your own key.",
   "license": "AGPL-3.0-only",
   "type": "module",
-  "exports": { ".": "./src/index.ts" },
-  "scripts": { "typecheck": "tsc -p ." },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.4.0",
     "@specwright/sections": "workspace:*",
-    "@specwright/spec": "workspace:*"
+    "@specwright/spec": "workspace:*",
+    "zod": "^4.6.7"
   }
 }
