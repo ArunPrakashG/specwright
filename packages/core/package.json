@@ -1,0 +1,10 @@
+{
+  "name": "@specwright/core",
+  "version": "0.1.0",
+  "description": "The StoreAdapter interface and the build pipeline shared by the CLI and the dashboard.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "typecheck": "tsc -p ." },
+  "dependencies": { "@specwright/spec": "workspace:*", "@specwright/sections": "workspace:*" }
+}
