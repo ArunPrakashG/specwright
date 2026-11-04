@@ -4,8 +4,12 @@
   "description": "Turn a client brief into a store they own, on any platform, verified before it ships.",
   "license": "AGPL-3.0-only",
   "type": "module",
-  "bin": { "specwright": "./bin/specwright.js" },
-  "scripts": { "typecheck": "tsc -p ." },
+  "bin": {
+    "specwright": "./bin/specwright.js"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.4.0",
     "@specwright/adapter-woocommerce": "workspace:*",
@@ -13,8 +17,7 @@
     "@specwright/core": "workspace:*",
     "@specwright/sections": "workspace:*",
     "@specwright/spec": "workspace:*",
-    "pg-boss": "^12.38.0",
-    "postgres": "^3.4.7",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "@specwright/db": "workspace:*"
   }
 }

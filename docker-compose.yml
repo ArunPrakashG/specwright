@@ -1,0 +1,16 @@
+# Self-host: `docker compose up`. Dev: `docker compose up -d db`.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: specwright
+      POSTGRES_PASSWORD: specwright
+      POSTGRES_DB: specwright
+    ports: ["127.0.0.1:5433:5432"]
+    volumes: [db:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "specwright"]
+      interval: 2s
+      retries: 30
+volumes:
+  db:

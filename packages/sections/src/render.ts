@@ -1,8 +1,7 @@
 import { primaryMarket, type Page, type SiteSpec } from "@specwright/spec";
-import { readFileSync } from "node:fs";
 import { sections, esc, type RenderContext } from "./library.ts";
 
-export const sectionsCss = readFileSync(new URL("./sections.css", import.meta.url), "utf8");
+import { sectionsCss } from "./styles.ts";
 
 const SERIF = /serif|garamond|caslon|playfair|lora|merriweather|fraunces|baskerville|didot|bodoni/i;
 

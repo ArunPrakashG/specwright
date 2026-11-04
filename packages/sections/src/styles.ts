@@ -2,8 +2,8 @@
    platform theme, so the reference render is the golden design. Tokens come from the
    spec as --st-* custom properties (see tokensCss). Container queries let a store
    reflow inside any preview pane. */
-
-.st {
+// Kept as a module so bundlers and themes get the same string.
+export const sectionsCss = `.st {
   container-type: inline-size;
   background: var(--st-bg);
   color: var(--st-ink);
@@ -80,3 +80,4 @@
   .st-media { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .st-form { flex-basis: 100%; }
 }
+`;
