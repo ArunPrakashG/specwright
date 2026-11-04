@@ -1,0 +1,24 @@
+{
+  "name": "specwright",
+  "version": "0.1.0",
+  "description": "Turn a client brief into a store they own, on any platform, verified before it ships.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "bin": {
+    "specwright": "./bin/specwright.js"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.4.0",
+    "@specwright/adapter-woocommerce": "workspace:*",
+    "@specwright/checks": "workspace:*",
+    "@specwright/core": "workspace:*",
+    "@specwright/sections": "workspace:*",
+    "@specwright/spec": "workspace:*",
+    "tsx": "^4.19.2",
+    "@specwright/db": "workspace:*",
+    "@specwright/ai": "workspace:*"
+  }
+}

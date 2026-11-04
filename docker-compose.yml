@@ -1,0 +1,39 @@
+# Self-host: `docker compose up -d`, then open http://localhost:3100.
+# Development: `docker compose up -d db` and run `pnpm dev` and `pnpm worker` on the host.
+x-app: &app
+  build: .
+  restart: unless-stopped
+  environment:
+    DATABASE_URL: postgres://specwright:specwright@db:5432/specwright
+    SPECWRIGHT_DATA_DIR: /data
+    ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    SPECWRIGHT_ADMIN_TOKEN: ${SPECWRIGHT_ADMIN_TOKEN:-}
+  volumes: [data:/data]
+  depends_on:
+    db: { condition: service_healthy }
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: specwright
+      POSTGRES_PASSWORD: specwright
+      POSTGRES_DB: specwright
+    ports: ["127.0.0.1:5433:5432"]
+    volumes: [db:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "specwright"]
+      interval: 2s
+      retries: 30
+  web:
+    <<: *app
+    build: { context: ., target: web }
+    ports: ["127.0.0.1:3100:3100"]
+  worker:
+    <<: *app
+    build: { context: ., target: worker }
+
+volumes:
+  db:
+  data:

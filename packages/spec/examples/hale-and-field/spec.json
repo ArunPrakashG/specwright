@@ -1,0 +1,522 @@
+{
+  "$schema": "../../spec.schema.json",
+  "specVersion": "1",
+  "id": "hale-and-field",
+  "name": "Hale & Field",
+  "domain": "haleandfield.com",
+  "revision": 4,
+  "tokens": {
+    "color": {
+      "bg": "#F2F0EB",
+      "ink": "#22201C",
+      "ink-2": "#5A554C",
+      "line": "#DDD8CE",
+      "primary": "#4E5D3A",
+      "on-primary": "#FFFFFF",
+      "accent": "#A85F2C",
+      "on-accent": "#FFFFFF",
+      "surface": "#FFFFFF",
+      "field-border": "#8A8274",
+      "tile-1": "#D9CFC0",
+      "tile-2": "#C9D0C1",
+      "tile-3": "#E4DCD2"
+    },
+    "font": {
+      "heading": "Instrument Serif",
+      "body": "Geist"
+    },
+    "radius": 2,
+    "width": 1120
+  },
+  "pages": [
+    {
+      "id": "home",
+      "title": "Home",
+      "path": "/",
+      "sections": [
+        {
+          "id": "header",
+          "type": "header",
+          "settings": {
+            "brand": "Hale & Field",
+            "links": [
+              {
+                "label": "Shop",
+                "href": "/shop"
+              },
+              {
+                "label": "Journal",
+                "href": "/journal"
+              },
+              {
+                "label": "About",
+                "href": "/about"
+              }
+            ],
+            "showCart": true
+          }
+        },
+        {
+          "id": "hero",
+          "type": "hero",
+          "settings": {
+            "heading": {
+              "en": "Stoneware, made slowly.",
+              "de": "Steinzeug, langsam gemacht.",
+              "fr": "Du grès, fait lentement."
+            },
+            "lead": "Small-batch tableware, thrown and glazed in our Bristol studio. Shipped to the UK, EU and US.",
+            "button": {
+              "label": "Shop the collection",
+              "href": "/shop"
+            },
+            "image": {
+              "src": "images/hero-bowls.svg",
+              "alt": "",
+              "background": "tile-1"
+            }
+          }
+        },
+        {
+          "id": "featured",
+          "type": "product-grid",
+          "settings": {
+            "heading": "The everyday set",
+            "category": "everyday",
+            "limit": 3,
+            "link": {
+              "label": "View all",
+              "href": "/shop"
+            }
+          }
+        },
+        {
+          "id": "story",
+          "type": "media-text",
+          "settings": {
+            "heading": "Fired twice, used daily.",
+            "body": "Every piece is thrown by hand, bisque fired, glazed, then fired again. Dishwasher safe, made to be used.",
+            "link": {
+              "label": "Read our story",
+              "href": "/about"
+            },
+            "linkColor": "#9A8F7E",
+            "image": {
+              "src": "images/kiln-stack.svg",
+              "alt": "",
+              "background": "tile-3"
+            }
+          }
+        },
+        {
+          "id": "newsletter",
+          "type": "newsletter",
+          "settings": {
+            "heading": "Kiln notes, once a month.",
+            "list": "kiln-notes",
+            "button": "Subscribe"
+          }
+        },
+        {
+          "id": "footer",
+          "type": "footer",
+          "settings": {
+            "address": "Hale & Field Studio, Bristol",
+            "links": [
+              {
+                "label": "Shipping",
+                "href": "/policies/shipping"
+              },
+              {
+                "label": "Returns",
+                "href": "/policies/returns"
+              },
+              {
+                "label": "Privacy",
+                "href": "/policies/privacy"
+              },
+              {
+                "label": "Accessibility",
+                "href": "/policies/accessibility"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "title": "About",
+      "path": "/about",
+      "sections": [
+        {
+          "id": "intro",
+          "type": "rich-text",
+          "settings": {
+            "heading": "Our story",
+            "body": "Hale & Field is two potters and one kiln in Bristol. We make a small range of tableware and keep making it, so a broken plate can always be replaced.\n\nEverything is thrown on the wheel, trimmed by hand and fired twice."
+          }
+        },
+        {
+          "id": "studio",
+          "type": "media-text",
+          "settings": {
+            "heading": "Made to be used.",
+            "body": "Our glazes are food safe and lead free. Every piece goes in the dishwasher and the microwave.",
+            "image": {
+              "src": "images/kiln-stack.svg",
+              "alt": "Plates stacked in the kiln",
+              "background": "tile-2"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "journal",
+      "title": "Journal",
+      "path": "/journal",
+      "sections": [
+        {
+          "id": "intro",
+          "type": "rich-text",
+          "settings": {
+            "heading": "Journal",
+            "body": "Notes from the studio: new glazes, kiln days and what we are making next. Subscribe to Kiln notes to get them by email."
+          }
+        }
+      ]
+    }
+  ],
+  "catalog": {
+    "categories": [
+      {
+        "slug": "everyday",
+        "name": "Everyday set"
+      },
+      {
+        "slug": "mugs",
+        "name": "Mugs"
+      },
+      {
+        "slug": "bowls",
+        "name": "Bowls"
+      },
+      {
+        "slug": "plates",
+        "name": "Plates"
+      }
+    ],
+    "products": [
+      {
+        "sku": "HF-MUG",
+        "slug": "morning-mug",
+        "name": "Morning mug",
+        "description": "A 350 ml mug with a wide handle, glazed inside and out. Holds heat, fits two fingers.",
+        "price": [
+          {
+            "amount": 3600,
+            "currency": "USD"
+          },
+          {
+            "amount": 3400,
+            "currency": "EUR"
+          },
+          {
+            "amount": 2900,
+            "currency": "GBP"
+          }
+        ],
+        "categories": [
+          "everyday",
+          "mugs"
+        ],
+        "images": [
+          {
+            "src": "images/morning-mug.svg",
+            "alt": "A stoneware mug",
+            "background": "tile-2"
+          }
+        ],
+        "featured": true,
+        "options": [
+          {
+            "name": "Glaze",
+            "values": [
+              "Moss",
+              "Oat",
+              "Ash"
+            ]
+          }
+        ],
+        "variants": [
+          {
+            "sku": "HF-MUG-MOSS",
+            "options": {
+              "Glaze": "Moss"
+            },
+            "stock": 24
+          },
+          {
+            "sku": "HF-MUG-OAT",
+            "options": {
+              "Glaze": "Oat"
+            },
+            "stock": 18
+          },
+          {
+            "sku": "HF-MUG-ASH",
+            "options": {
+              "Glaze": "Ash"
+            },
+            "stock": 0
+          }
+        ]
+      },
+      {
+        "sku": "HF-PASTA",
+        "slug": "pasta-bowl",
+        "name": "Pasta bowl",
+        "description": "A shallow 22 cm bowl for pasta, salads and stews.",
+        "price": [
+          {
+            "amount": 4200,
+            "currency": "USD"
+          },
+          {
+            "amount": 4000,
+            "currency": "EUR"
+          },
+          {
+            "amount": 3400,
+            "currency": "GBP"
+          }
+        ],
+        "categories": [
+          "everyday",
+          "bowls"
+        ],
+        "images": [
+          {
+            "src": "images/pasta-bowl.svg",
+            "alt": "A shallow green bowl",
+            "background": "tile-1"
+          }
+        ],
+        "featured": true,
+        "stock": 30
+      },
+      {
+        "sku": "HF-SIDE",
+        "slug": "side-plate",
+        "name": "Side plate",
+        "description": "A 20 cm plate with a raised rim.",
+        "price": [
+          {
+            "amount": 3000,
+            "currency": "USD"
+          },
+          {
+            "amount": 2800,
+            "currency": "EUR"
+          },
+          {
+            "amount": 2400,
+            "currency": "GBP"
+          }
+        ],
+        "categories": [
+          "everyday",
+          "plates"
+        ],
+        "images": [
+          {
+            "src": "images/side-plate.svg",
+            "alt": "A pale side plate",
+            "background": "tile-3"
+          }
+        ],
+        "featured": true,
+        "stock": 40
+      },
+      {
+        "sku": "HF-DINNER",
+        "slug": "dinner-plate",
+        "name": "Dinner plate",
+        "description": "A 27 cm plate in moss glaze with an oat centre.",
+        "price": [
+          {
+            "amount": 3800,
+            "currency": "USD"
+          },
+          {
+            "amount": 3600,
+            "currency": "EUR"
+          },
+          {
+            "amount": 3100,
+            "currency": "GBP"
+          }
+        ],
+        "categories": [
+          "plates"
+        ],
+        "images": [
+          {
+            "src": "images/dinner-plate.svg",
+            "alt": "A green dinner plate",
+            "background": "tile-2"
+          }
+        ],
+        "stock": 26
+      },
+      {
+        "sku": "HF-TEA",
+        "slug": "tea-bowl",
+        "name": "Tea bowl",
+        "description": "A footed 200 ml bowl for tea, thrown thin.",
+        "price": [
+          {
+            "amount": 2800,
+            "currency": "USD"
+          },
+          {
+            "amount": 2600,
+            "currency": "EUR"
+          },
+          {
+            "amount": 2200,
+            "currency": "GBP"
+          }
+        ],
+        "categories": [
+          "bowls"
+        ],
+        "images": [
+          {
+            "src": "images/tea-bowl.svg",
+            "alt": "A small footed tea bowl",
+            "background": "tile-1"
+          }
+        ],
+        "stock": 15
+      },
+      {
+        "sku": "HF-PLATTER",
+        "slug": "serving-platter",
+        "name": "Serving platter",
+        "description": "A 40 cm oval platter for shared meals.",
+        "price": [
+          {
+            "amount": 7800,
+            "currency": "USD"
+          },
+          {
+            "amount": 7400,
+            "currency": "EUR"
+          },
+          {
+            "amount": 6200,
+            "currency": "GBP"
+          }
+        ],
+        "categories": [
+          "plates"
+        ],
+        "images": [
+          {
+            "src": "images/serving-platter.svg",
+            "alt": "An oval serving platter",
+            "background": "tile-3"
+          }
+        ],
+        "stock": 8
+      }
+    ]
+  },
+  "markets": [
+    {
+      "id": "us",
+      "name": "United States",
+      "countries": [
+        "US"
+      ],
+      "currency": "USD",
+      "locales": [
+        "en"
+      ],
+      "taxDisplay": "exclusive",
+      "primary": true
+    },
+    {
+      "id": "eu",
+      "name": "European Union",
+      "countries": [
+        "DE",
+        "FR",
+        "NL",
+        "IE"
+      ],
+      "currency": "EUR",
+      "locales": [
+        "de",
+        "fr"
+      ],
+      "taxDisplay": "inclusive"
+    },
+    {
+      "id": "uk",
+      "name": "United Kingdom",
+      "countries": [
+        "GB"
+      ],
+      "currency": "GBP",
+      "locales": [
+        "en"
+      ],
+      "taxDisplay": "inclusive"
+    }
+  ],
+  "goals": [
+    {
+      "goal": "payments",
+      "provider": "stripe"
+    },
+    {
+      "goal": "tax",
+      "provider": "stripe-tax"
+    },
+    {
+      "goal": "shipping",
+      "provider": "flat-rate",
+      "notes": "US $8, EU €9, UK £5, free over 120"
+    },
+    {
+      "goal": "email-marketing",
+      "provider": "mailchimp",
+      "notes": "list kiln-notes"
+    }
+  ],
+  "policies": [
+    {
+      "id": "shipping",
+      "title": "Shipping",
+      "body": "We ship from Bristol within three working days. Flat rate per market, free over 120 in your currency."
+    },
+    {
+      "id": "returns",
+      "title": "Returns",
+      "body": "Return unused pieces within 30 days for a full refund. Breakages in transit are replaced free."
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy",
+      "body": "We keep your name, address and order history to fulfil orders. We never sell your data."
+    },
+    {
+      "id": "accessibility",
+      "title": "Accessibility",
+      "body": "This store aims to meet WCAG 2.2 AA. Tell us about any barrier at hello@haleandfield.com."
+    }
+  ]
+}

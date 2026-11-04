@@ -1,0 +1,27 @@
+{
+  "name": "@specwright/adapter-woocommerce",
+  "version": "0.1.0",
+  "description": "Turns a Site Spec into a WooCommerce block theme, catalog import and WordPress Playground preview.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "try": "tsx scripts/try.ts"
+  },
+  "dependencies": {
+    "@php-wasm/node": "3.1.62",
+    "@php-wasm/universal": "3.1.62",
+    "@specwright/core": "workspace:*",
+    "@specwright/sections": "workspace:*",
+    "@specwright/spec": "workspace:*",
+    "@wordpress/block-serialization-default-parser": "^6.1.0",
+    "@wp-playground/cli": "^3.1.62",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.1"
+  }
+}

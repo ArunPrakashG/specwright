@@ -1,0 +1,10 @@
+{
+  "name": "@specwright/sections",
+  "version": "0.1.0",
+  "description": "Section library: settings schemas and the reference HTML render that every platform output is checked against.",
+  "license": "MIT",
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "typecheck": "tsc -p ." },
+  "dependencies": { "@specwright/spec": "workspace:*", "zod": "^4.6.7" }
+}

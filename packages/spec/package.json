@@ -1,0 +1,10 @@
+{
+  "name": "@specwright/spec",
+  "version": "0.1.0",
+  "description": "The Site Spec: a platform-neutral description of a store.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": { ".": "./src/index.ts", "./examples/*": "./examples/*" },
+  "scripts": { "typecheck": "tsc -p ." },
+  "dependencies": { "zod": "^4.6.7" }
+}

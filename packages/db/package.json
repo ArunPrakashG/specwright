@@ -1,0 +1,15 @@
+{
+  "name": "@specwright/db",
+  "version": "0.1.0",
+  "description": "Dashboard storage: projects, builds, review versions and comments, plus the build queue.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "typecheck": "tsc -p ." },
+  "dependencies": {
+    "@specwright/core": "workspace:*",
+    "@specwright/spec": "workspace:*",
+    "pg-boss": "^12.38.0",
+    "postgres": "^3.4.9"
+  }
+}
