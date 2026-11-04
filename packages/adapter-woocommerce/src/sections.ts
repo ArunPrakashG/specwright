@@ -29,12 +29,12 @@ export function sectionMarkup(instance: SectionInstance, c: SectionContext) {
 const tx = (c: SectionContext, v: Parameters<typeof text>[1]) => esc(text(c.spec, v));
 
 function tile(img: { src: string; alt: string; background?: string }, c: SectionContext, id: string) {
-  const className = cls("st-tile", sid(id));
-  const bg = img.background ? ` style="background: var(--st-${esc(img.background)})"` : "";
+  // core/image has no background support, so an inline style would fail editor validation; a class carries it.
+  const className = cls("st-tile", img.background && `st-bg-${img.background}`, sid(id));
   return block(
     "image",
     { sizeSlug: "full", linkDestination: "none", className },
-    `<figure class="wp-block-image size-full ${className}"${bg}><img src="${c.image(img.src)}" alt="${esc(img.alt)}"/></figure>`,
+    `<figure class="wp-block-image size-full ${esc(className)}"><img src="${c.image(img.src)}" alt="${esc(img.alt)}"/></figure>`,
   );
 }
 
@@ -55,7 +55,7 @@ const header: Render = (s, c) => {
     cls("st-in st-head", sid(c.id())),
     join(
       paragraph("st-brand", `<a class="${cls("st-word", sid(c.id("brand")))}" href="/">${esc(s.brand)}</a>`),
-      group(cls("st-nav", sid(c.id("nav"))), join(list("st-links", links), menu), { tag: "nav", extra: ` aria-label="Main"` }),
+      group(cls("st-nav", sid(c.id("nav"))), join(list("st-links", links), menu), { tag: "nav", label: "Main" }),
     ),
     { tag: "header" },
   );
@@ -192,7 +192,7 @@ const footer: Render = (s, c) => {
       cls("st-foot", sid(c.id())),
       join(
         paragraph(cls("st-address", sid(c.id("address"))), esc(s.address)),
-        group(sid(c.id("links")), list("", links), { tag: "nav", extra: ` aria-label="Policies"` }),
+        group(sid(c.id("links")), list("", links), { tag: "nav", label: "Policies" }),
       ),
       { tag: "footer" },
     ),

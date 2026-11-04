@@ -6,7 +6,7 @@
  */
 
 const css = `
-html { padding: 44px 0 24px; background: transparent !important; }
+html { padding: 44px 0 24px; background: transparent !important; overflow-x: clip; }
 .swo-layer { --a: #1F4FD8; --a-soft: #E8EEFD; --on-a: #FFFFFF; --f: #C2332A; --f-soft: #FCEBEA; --done: #646C7A; --focus: #1F4FD8;
   --sh: 0 8px 24px rgba(14, 17, 22, .12), 0 2px 6px rgba(14, 17, 22, .06);
   position: absolute; top: 0; left: 0; width: 0; height: 0; z-index: 2147483000; font: 500 12px/1 "Geist", ui-sans-serif, system-ui, sans-serif; }
@@ -96,9 +96,58 @@ function overlay() {
       } else {
         Object.assign(node.style, { top: `${b.top}px`, left: `${b.left}px`, width: `${b.width}px`, height: `${b.height}px` });
         const tag = node.querySelector<HTMLElement>(".swo-tag");
-        if (tag) tag.style.maxWidth = `${Math.max(80, docWidth - b.left - 2)}px`;
+        if (tag) {
+          tag.style.maxWidth = `${Math.max(80, docWidth - b.left - 2)}px`;
+          placeTag(tag, el, b, docWidth);
+        }
       }
     }
+  }
+
+  // Text and media in a band of the page, in document coordinates, that the tag should not cover.
+  function blockers(el: Element, top: number, bottom: number) {
+    const out: { top: number; bottom: number; left: number; right: number }[] = [];
+    const push = (r: DOMRect) => {
+      const t = r.top + scrollY;
+      if (r.width && r.height && t < bottom && t + r.height > top) out.push({ top: t, bottom: t + r.height, left: r.left + scrollX, right: r.right + scrollX });
+    };
+    const range = document.createRange();
+    const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+      if (!n.textContent?.trim() || layer.contains(n)) continue;
+      range.selectNodeContents(n);
+      for (const r of Array.from(range.getClientRects())) push(r);
+    }
+    for (const m of Array.from(document.querySelectorAll("img, svg, video, input, select, textarea, button"))) {
+      if (m !== el && !m.contains(el) && !layer.contains(m)) push(m.getBoundingClientRect());
+    }
+    return out;
+  }
+
+  // Above the brackets reads best. When that would cover text: right-aligned above, then inside a
+  // large element's corner, then below.
+  function placeTag(tag: HTMLElement, el: Element, b: { top: number; left: number; width: number; height: number }, docWidth: number) {
+    const w = tag.offsetWidth;
+    const h = tag.offsetHeight || 22;
+    const above = -6 - 4 - h;
+    const below = b.height + 6 + 4;
+    const right = Math.min(b.width + 6 - w, docWidth - b.left - w - 2);
+    const roomy = b.height >= h * 3 && b.width >= w + 16;
+    const spots = [
+      { top: above, left: -6 },
+      { top: above, left: right },
+      ...(roomy ? [{ top: 8, left: 8 }] : []),
+      { top: below, left: -6 },
+      { top: below, left: right },
+    ];
+    const near = blockers(el, b.top + above - 2, b.top + Math.max(below, 8) + h + 2);
+    const clear = spots.find((s) => {
+      const t = b.top + s.top, l = b.left + s.left;
+      return t >= 0 && !near.some((r) => r.top < t + h + 2 && r.bottom > t - 2 && r.left < l + w + 2 && r.right > l - 2);
+    });
+    const spot = clear ?? (b.top + above >= 0 ? spots[0]! : spots[1]!);
+    tag.style.top = `${spot.top}px`;
+    tag.style.left = `${spot.left}px`;
   }
 
   function draw(scroll: boolean) {

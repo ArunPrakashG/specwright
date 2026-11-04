@@ -195,7 +195,7 @@ export function BuildView({ slug, initial, pages }: { slug: string; initial: Bui
         )}
         <section aria-labelledby="cli" className="sw-card" style={{ padding: "16px 20px", display: "flex", flexDirection: "column", gap: 12 }}>
           <h3 id="cli" style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>Run locally</h3>
-          <CopyField text={`specwright build --target ${b.target}`} label="Copy command" />
+          <CopyField text={`specwright build ${slug} --target ${b.target}`} label="Copy command" />
           {b.preview_url && (
             <a href={b.preview_url} target="_blank" rel="noreferrer" style={{ fontSize: 13, color: "var(--sw-accent)" }}>
               Open the preview store

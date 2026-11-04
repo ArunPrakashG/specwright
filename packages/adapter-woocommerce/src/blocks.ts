@@ -1,3 +1,5 @@
+import { esc } from "./util.ts";
+
 /** Serialize block attributes the way WordPress does, so the comment delimiter can never be closed early. */
 export function attrs(value: Record<string, unknown>) {
   return JSON.stringify(value)
@@ -22,16 +24,18 @@ export function block(name: string, a: Record<string, unknown> | null = null, in
 export const join = (...parts: (string | false | undefined)[]) => parts.filter(Boolean).join("\n");
 
 /** A group block rendered as `<tag class="wp-block-group …">`. */
-export function group(className: string, inner: string, o: { tag?: string; anchor?: string; extra?: string } = {}) {
+export function group(className: string, inner: string, o: { tag?: string; anchor?: string; label?: string } = {}) {
   const tag = o.tag ?? "div";
   const a: Record<string, unknown> = {};
   if (tag !== "div") a.tagName = tag;
   if (o.anchor) a.anchor = o.anchor;
+  if (o.label) a.ariaLabel = o.label;
   if (className) a.className = className;
   a.layout = { type: "default" };
   const id = o.anchor ? ` id="${o.anchor}"` : "";
+  const label = o.label ? ` aria-label="${esc(o.label)}"` : "";
   const classes = ["wp-block-group", className].filter(Boolean).join(" ");
-  return block("group", a, `<${tag}${id} class="${classes}"${o.extra ?? ""}>\n${inner}\n</${tag}>`);
+  return block("group", a, `<${tag}${id} class="${classes}"${label}>\n${inner}\n</${tag}>`);
 }
 
 export function heading(level: number, className: string, html: string, anchor?: string) {
