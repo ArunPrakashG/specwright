@@ -1,0 +1,58 @@
+# Specwright on ovh-arun, as ~/infra/apps/specwright/docker-compose.yml.
+# Kept in the repo (deploy/) and copied there by deploy/deploy.sh; edit it here, not on the server.
+#
+# The main Caddy (~/infra/proxy) serves specwright.arunprakashg.com and proxies to the web
+# container over the "proxy" network. Postgres is the shared one: database and role
+# "specwright", reached over "shared_services".
+# .env next to this file (mode 600, never in the repo) holds DATABASE_URL, SPECWRIGHT_DATA_DIR,
+# SPECWRIGHT_ADMIN_TOKEN, optionally ANTHROPIC_API_KEY, and TAG (the images to run).
+
+name: specwright
+
+x-app: &app
+  restart: unless-stopped
+  env_file: .env
+  volumes: [data:/data]
+  security_opt: ["no-new-privileges:true"]
+  networks: [proxy, shared_services]
+
+services:
+  web:
+    <<: *app
+    image: specwright-web:${TAG:?set TAG in .env}
+    container_name: specwright-web
+    environment:
+      NODE_ENV: production
+    expose: ["3100"]
+    mem_limit: 768m
+    cpus: 1.0
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3100/login').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # Builds run one at a time: a WordPress Playground preview plus Chromium for the checks.
+  worker:
+    <<: *app
+    image: specwright-worker:${TAG:?set TAG in .env}
+    container_name: specwright-worker
+    environment:
+      # The server has no IPv6 route; Playground's downloads stall on AAAA records otherwise.
+      NODE_OPTIONS: --dns-result-order=ipv4first --network-family-autoselection-attempt-timeout=2000
+    shm_size: 1g
+    mem_limit: 3g
+    cpus: 2.0
+    stop_grace_period: 40s
+
+volumes:
+  data:
+
+networks:
+  proxy:
+    external: true
+    name: proxy
+  shared_services:
+    external: true
+    name: shared_services
