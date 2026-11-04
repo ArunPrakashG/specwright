@@ -7,6 +7,7 @@ x-app: &app
     DATABASE_URL: postgres://specwright:specwright@db:5432/specwright
     SPECWRIGHT_DATA_DIR: /data
     ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    SPECWRIGHT_ADMIN_TOKEN: ${SPECWRIGHT_ADMIN_TOKEN:-}
   volumes: [data:/data]
   depends_on:
     db: { condition: service_healthy }

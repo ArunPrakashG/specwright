@@ -1,0 +1,58 @@
+/* Additions to tokens.css. Tokens only. */
+
+.sw {
+  --sw-font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --sw-font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+body { margin: 0; min-height: 100vh; background: var(--sw-bg); color: var(--sw-text); font-family: var(--sw-font-sans); -webkit-font-smoothing: antialiased; }
+.sw button, .sw input, .sw select, .sw textarea { font-family: inherit; }
+.sw button:disabled { cursor: not-allowed; opacity: .55; }
+.sw-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sw-mono { font-family: var(--sw-font-mono); }
+.sw-skip { position: absolute; left: var(--sw-space-4); top: -48px; z-index: 10; }
+.sw-skip:focus { top: var(--sw-space-2); }
+select.sw-input { padding-right: 28px; }
+.sw-input[aria-invalid="true"] { border-color: var(--sw-fail); }
+.sw-error { margin: 0; font-size: var(--sw-text-sm); line-height: 18px; color: var(--sw-fail); }
+.sw-hint { margin: 0; font-size: var(--sw-text-sm); line-height: 18px; color: var(--sw-text-3); }
+
+/* app bar: keep the page gutter (the bar's own padding would remove it) */
+.sw-wrap.sw-bar { padding: 8px 24px; }
+.sw-bar > .sw-nav { flex: 1 1 auto; flex-wrap: nowrap; }
+@media (max-width: 640px) {
+  .sw-wrap.sw-bar { padding: 8px 16px; }
+  .sw-bar > .sw-nav { margin-left: -10px; }
+}
+
+/* project list rows */
+a.sw-row:hover { background: var(--sw-surface-2); }
+.sw-card > .sw-row:last-child { border-bottom: 0 !important; border-radius: 0 0 var(--sw-radius-lg) var(--sw-radius-lg); }
+
+/* reference render frame */
+.sw-frame { height: 780px; display: flex; justify-content: center; background: var(--sw-surface-2); border: 1px solid var(--sw-border); border-radius: var(--sw-radius-lg); padding: 0 var(--sw-space-5); overflow: hidden; }
+.sw-frame iframe { display: block; width: 100%; height: 100%; border: 0; background: transparent; }
+.sw-frame.is-mobile iframe { max-width: 390px; }
+.sw-frame.is-review { height: 840px; }
+.sw-frame.is-snippet { height: 360px; border: 0; border-radius: 0; padding: 0 var(--sw-space-4); }
+@media (max-width: 640px) {
+  .sw-frame { height: 640px; padding: 0 var(--sw-space-2); }
+  .sw-frame.is-review { height: 640px; }
+}
+
+/* dialogs */
+.sw-dialog { width: min(520px, calc(100vw - 32px)); max-height: calc(100vh - 32px); padding: 0; border: 1px solid var(--sw-border); border-radius: var(--sw-radius-lg); background: var(--sw-surface); color: var(--sw-text); box-shadow: var(--sw-shadow-2); }
+.sw-dialog::backdrop { background: rgba(14, 17, 22, .32); }
+.sw-dialog[open] { animation: sw-rise var(--sw-dur-base) var(--sw-ease-standard) both; }
+
+/* card lists */
+.sw-list > * + * { border-top: 1px solid var(--sw-border); }
+.sw-builds { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.2fr) minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, .8fr); gap: 16px; align-items: center; }
+@media (max-width: 760px) {
+  .sw-builds { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; }
+  .sw-builds > .sw-col-hide { display: none; }
+}
+a.sw-builds:hover { background: var(--sw-surface-2); }
+
+.sw-thread[aria-pressed] { border-radius: var(--sw-radius-sm); }
+.sw-check { width: 16px; height: 16px; accent-color: var(--sw-accent); margin: 0; }
+@media (pointer: coarse) { .sw-input { min-height: 44px; } }

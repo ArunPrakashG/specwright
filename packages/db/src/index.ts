@@ -90,7 +90,7 @@ export function migrate() {
 
 /** Root for project folders, build output and screenshots. */
 export function dataDir() {
-  return resolve(process.env.SPECWRIGHT_DATA_DIR ?? join(process.cwd(), ".specwright"));
+  return resolve(/* turbopackIgnore: true */ process.env.SPECWRIGHT_DATA_DIR ?? join(process.cwd(), ".specwright"));
 }
 export const projectDir = (slug: string) => join(dataDir(), "projects", slug);
 export const buildDir = (slug: string, number: number) => join(dataDir(), "builds", slug, String(number));
@@ -174,6 +174,11 @@ export async function createProject(spec: SiteSpec | Record<string, any>, assets
     returning *`;
   await snapshot(row!.id, s.revision ?? 1, s);
   return row!;
+}
+
+/** Rename a project or change its domain (the spec file is updated separately with saveSpec). */
+export async function updateProject(id: string, patch: { name: string; domain: string | null }) {
+  await sql()`update projects set name = ${patch.name}, domain = ${patch.domain}, updated_at = now() where id = ${id}`;
 }
 
 export async function setStage(projectId: string, stage: Stage) {

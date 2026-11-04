@@ -45,10 +45,11 @@ Copy `.env.example` to `.env` first. Projects, builds and review comments live i
 ## Self-host
 
 ```bash
+echo "SPECWRIGHT_ADMIN_TOKEN=$(openssl rand -hex 24)" >> .env
 docker compose up -d
 ```
 
-Starts Postgres, the dashboard on port 3100 and a build worker. Data persists in the `db` and `data` volumes.
+The token signs in the agency side; client review links stay public. Starts Postgres, the dashboard on port 3100 and a build worker. Data persists in the `db` and `data` volumes.
 
 ## Layout
 

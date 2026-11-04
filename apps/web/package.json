@@ -8,9 +8,12 @@
     "dev": "next dev -p 3100",
     "build": "next build",
     "start": "next start -p 3100",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "seed": "tsx scripts/seed.ts",
+    "fake-build": "tsx scripts/fake-build.ts"
   },
   "dependencies": {
+    "@specwright/ai": "workspace:*",
     "@specwright/core": "workspace:*",
     "@specwright/db": "workspace:*",
     "@specwright/sections": "workspace:*",
@@ -21,6 +24,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.2.0",
-    "@types/react-dom": "^19.2.0"
+    "@types/react-dom": "^19.2.0",
+    "playwright": "^1.64.1"
   }
 }

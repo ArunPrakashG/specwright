@@ -245,7 +245,7 @@ async function build(dir: string, flags: Flags, keep: boolean) {
     if (flags.json) return;
     if (e.type === "step" && e.step.status !== "running" && e.step.status !== "waiting") {
       print(`${MARK[e.step.status]!.padEnd(4)}  ${e.step.label.padEnd(16)}  ${e.step.detail ?? ""}`);
-      if (e.step.id === "checks" || e.step.id === "recheck") printChecks(lastChecks(events));
+      if ((e.step.id === "checks" || e.step.id === "recheck") && e.step.status !== "skip") printChecks(lastChecks(events));
     } else if (e.type === "fix") print(`      fix   ${e.fix.label}  (${e.fix.path}) → spec v${e.revision}`);
     else if (e.type === "log" && process.env.SPECWRIGHT_DEBUG) process.stderr.write(e.message + "\n");
   };
