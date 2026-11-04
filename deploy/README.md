@@ -21,12 +21,13 @@ This builds both images here, ships them over SSH, sets `TAG` in the server's `.
    - `SPECWRIGHT_DATA_DIR=/data`
    - `SPECWRIGHT_ADMIN_TOKEN` (generate with `openssl rand -hex 24`)
    - `ANTHROPIC_API_KEY` (optional; drafting from a brief and comment triage need it)
+   - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `SPECWRIGHT_ADMIN_EMAILS`, `SPECWRIGHT_PUBLIC_URL` for "Continue with Google". The OAuth client is in the Google Cloud project `specwright-app` (Google Auth Platform, Testing mode). An account must be on both the `SPECWRIGHT_ADMIN_EMAILS` list and the project's test users.
 3. **Caddy:** add a `specwright.arunprakashg.com` block to `~/infra/proxy/Caddyfile` that proxies to `specwright-web:3100`, then reload Caddy.
 4. **DNS:** create a proxied `A` record for `specwright` in the `arunprakashg.com` Cloudflare zone, pointing to the server.
 
 ## Signing in
 
-The admin token is in the server's `.env`:
+Use "Continue with Google" with an allowed account. The admin token still works as a fallback, and the API uses it as a bearer token. It is in the server's `.env`:
 
 ```bash
 ssh ovh-arun 'grep ^SPECWRIGHT_ADMIN_TOKEN= ~/infra/apps/specwright/.env'
