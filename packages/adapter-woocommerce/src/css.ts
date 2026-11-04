@@ -72,7 +72,10 @@ body.st { margin: 0; min-height: 100vh; }
   min-height: 48px; padding: 0 22px; border: 0; border-radius: var(--st-radius);
   background: var(--st-primary); color: var(--st-on-primary); font: 500 15px/1 var(--st-font-body); cursor: pointer;
 }
-.st .single_add_to_cart_button.disabled { opacity: 0.5; cursor: not-allowed; }
+/* Disabled until a variant is chosen. Fading it would drop the label below 4.5:1, so it turns into an outline instead. */
+.st .single_add_to_cart_button.button.disabled { opacity: 1; background: var(--st-surface); color: var(--st-ink-2); box-shadow: inset 0 0 0 1px var(--st-line); cursor: not-allowed; }
+/* The empty-cart product grid uses core button links, which the shared link rule would recolour. */
+.st .wc-block-grid__product-add-to-cart .wp-block-button__link { background: var(--st-primary); color: var(--st-on-primary); }
 .st .woocommerce-message, .st .woocommerce-info, .st .wc-block-components-notice-banner { border-radius: var(--st-radius); }
 
 @container (max-width: 720px) {

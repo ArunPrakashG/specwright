@@ -55,7 +55,7 @@ export default async function BuildsPage({ params }: PageProps<"/p/[slug]/builds
             </p>
           </div>
           <div style={{ width: "min(100%, 420px)" }}>
-            <CopyField text={`specwright build --target ${project.platform}`} label="Copy command" />
+            <CopyField text={`specwright build ${project.slug} --target ${project.platform}`} label="Copy command" />
           </div>
         </div>
       )}

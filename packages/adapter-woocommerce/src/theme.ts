@@ -67,7 +67,9 @@ export async function emitTheme(spec: SiteSpec, ctx: AdapterContext): Promise<Em
   files.set("style.css", styleCss(spec));
   files.set("theme.json", JSON.stringify(themeJson(spec, fonts), null, 2) + "\n");
   files.set("functions.php", functionsPhp(spec));
-  files.set("assets/css/store.css", `${tokensCss(spec, ".st")}\n${sectionsCss}\n${wpCss}`);
+  // Tile backgrounds, as classes since core/image cannot carry an inline background.
+  const tileBg = Object.keys(spec.tokens.color).map((k) => `.st .st-bg-${k} { background: var(--st-${k}); }`).join("\n");
+  files.set("assets/css/store.css", `${tokensCss(spec, ".st")}\n${sectionsCss}\n${wpCss}\n${tileBg}\n`);
   for (const [name, body] of Object.entries(templates(pagePatterns.get(home.id) ?? []))) files.set(`templates/${name}.html`, body + "\n");
 
   const written = await writeTree(dir, files);

@@ -29,7 +29,7 @@ export function CopyButton({ text, label }: { text: string; label: string }) {
 export function CopyField({ text, label }: { text: string; label: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-      <code style={{ flex: 1, minWidth: 0, overflowX: "auto", whiteSpace: "nowrap", padding: "9px 12px", borderRadius: "var(--sw-radius-md)", background: "var(--sw-surface-2)", fontFamily: "var(--sw-font-mono)", fontSize: 12 }}>{text}</code>
+      <code style={{ flex: 1, minWidth: 0, whiteSpace: "pre-wrap", overflowWrap: "anywhere", lineHeight: "18px", padding: "9px 12px", borderRadius: "var(--sw-radius-md)", background: "var(--sw-surface-2)", fontFamily: "var(--sw-font-mono)", fontSize: 12 }}>{text}</code>
       <CopyButton text={text} label={label} />
     </div>
   );
