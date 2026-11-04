@@ -1,8 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { ADMIN_COOKIE, adminToken, isAdmin } from "@/lib/auth";
 
-/** Client review links, their previews and the token API stay public; everything else needs the admin token when one is set. */
-const PUBLIC = [/^\/r\/[^/]+(\/.*)?$/, /^\/api\/v1\/r\/[^/]+(\/.*)?$/, /^\/login$/];
+/** Client review links, their previews, the token API and Google sign-in stay public; everything else needs the admin token when one is set. */
+const PUBLIC = [/^\/r\/[^/]+(\/.*)?$/, /^\/api\/v1\/r\/[^/]+(\/.*)?$/, /^\/login$/, /^\/api\/v1\/auth\/google(\/callback)?$/];
 
 export async function proxy(req: NextRequest) {
   if (!adminToken()) return NextResponse.next();
