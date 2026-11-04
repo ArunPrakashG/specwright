@@ -1,0 +1,44 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/shop/",
+  "preferredVersions": {
+    "php": "8.3",
+    "wp": "latest"
+  },
+  "features": {
+    "networking": true
+  },
+  "steps": [
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "Hale & Field test store",
+        "permalink_structure": "/%postname%/"
+      }
+    },
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "wordpress.org/themes",
+        "slug": "twentytwentyfive"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "wordpress.org/plugins",
+        "slug": "woocommerce"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\nrequire '/wordpress/wp-load.php';\n\nupdate_option('woocommerce_coming_soon', 'no');\nupdate_option('woocommerce_store_pages_only', 'no');\nupdate_option('woocommerce_default_country', 'GB');\nupdate_option('woocommerce_currency', 'GBP');\nupdate_option('woocommerce_enable_guest_checkout', 'yes');\nupdate_option('woocommerce_calc_taxes', 'no');\nupdate_option('woocommerce_cod_settings', array('enabled' => 'yes', 'title' => 'Cash on delivery', 'description' => 'Pay when it arrives.', 'enable_for_methods' => array(), 'enable_for_virtual' => 'yes'));\nupdate_option('woocommerce_bacs_settings', array('enabled' => 'no'));\nupdate_option('woocommerce_cheque_settings', array('enabled' => 'no'));\n\n$zone = new WC_Shipping_Zone(0);\n$zone->add_shipping_method('free_shipping');\n$zone->save();\n\n$mug = new WC_Product_Variable();\n$mug->set_name('Morning mug');\n$mug->set_slug('morning-mug');\n$mug->set_sku('HF-MUG');\n$mug->set_description('A 350 ml mug with a wide handle, glazed inside and out.');\n$mug->set_status('publish');\n$attribute = new WC_Product_Attribute();\n$attribute->set_name('Glaze');\n$attribute->set_options(array('Moss', 'Oat', 'Ash'));\n$attribute->set_position(0);\n$attribute->set_visible(true);\n$attribute->set_variation(true);\n$mug->set_attributes(array($attribute));\n$mug->save();\nforeach (array('Moss' => 24, 'Oat' => 18, 'Ash' => 0) as $glaze => $stock) {\n  $variation = new WC_Product_Variation();\n  $variation->set_parent_id($mug->get_id());\n  $variation->set_attributes(array('glaze' => $glaze));\n  $variation->set_sku('HF-MUG-' . strtoupper($glaze));\n  $variation->set_regular_price('29.00');\n  $variation->set_manage_stock(true);\n  $variation->set_stock_quantity($stock);\n  $variation->set_stock_status($stock > 0 ? 'instock' : 'outofstock');\n  $variation->set_status('publish');\n  $variation->save();\n}\nWC_Product_Variable::sync($mug->get_id());\n\n$bowl = new WC_Product_Simple();\n$bowl->set_name('Pasta bowl');\n$bowl->set_slug('pasta-bowl');\n$bowl->set_sku('HF-PASTA');\n$bowl->set_description('A shallow 22 cm bowl for pasta, salads and stews.');\n$bowl->set_regular_price('34.00');\n$bowl->set_manage_stock(true);\n$bowl->set_stock_quantity(30);\n$bowl->set_status('publish');\n$bowl->save();\n\nflush_rewrite_rules(true);\n"
+    }
+  ]
+}
