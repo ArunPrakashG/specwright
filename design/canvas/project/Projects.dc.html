@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Specwright · Projects</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; background: var(--sw-bg); color: var(--sw-text); font-family: var(--sw-font-sans)">
+
+<header style="background: var(--sw-surface); border-bottom: 1px solid var(--sw-border)">
+  <div class="sw-wrap sw-bar">
+    <a href="Projects.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none" aria-label="Specwright home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" stroke="currentColor" stroke-width="2"></path><rect x="9" y="9" width="6" height="6" style="fill: var(--sw-accent)"></rect></svg>
+      <span style="font-weight: 600; font-size: 15px">Northline Studio</span>
+    </a>
+    <nav class="sw-nav" aria-label="Workspace" style="flex: 1">
+      <a href="Projects.dc.html" aria-current="page">Projects</a>
+      <a href="#sections">Sections</a>
+      <a href="#settings">Settings</a>
+    </nav>
+    <button class="sw-btn sw-btn--ghost sw-btn--icon" type="button" aria-label="Account: Ana Ruiz" style="border-radius: 50%; background: var(--sw-surface-2); color: var(--sw-text); font-size: 12px; font-weight: 600">AR</button>
+  </div>
+</header>
+
+<main class="sw-wrap" style="padding-top: 40px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 24px">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+    <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.01em">Projects</h1>
+    <sc-if value="{{hasProjects}}" hint-placeholder-val="{{ true }}">
+      <a class="sw-btn sw-btn--primary" href="#new">New project</a>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{hasProjects}}" hint-placeholder-val="{{ true }}">
+    <div class="sw-card">
+      <div class="sw-row sw-row-head" aria-hidden="true" style="padding: 12px 20px; border-bottom: 1px solid var(--sw-border); font-size: 13px; color: var(--sw-text-3)">
+        <span>Project</span>
+        <span class="sw-col-platform">Platform</span>
+        <span>Stage</span>
+        <span>Checks</span>
+        <span class="sw-col-updated">Updated</span>
+      </div>
+      <sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+        <a class="sw-row" href="{{p.href}}" style="padding: 16px 20px; border-bottom: 1px solid var(--sw-border); text-decoration: none; color: var(--sw-text)">
+          <span class="sw-col-name" style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+            <span style="font-size: 14px; font-weight: 500">{{p.name}}</span>
+            <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{p.domain}}</span>
+          </span>
+          <span class="sw-col-platform" style="font-size: 13px; color: var(--sw-text-2)">{{p.platform}}</span>
+          <span style="font-size: 13px; color: var(--sw-text-2)">{{p.stage}}</span>
+          <span><span class="{{p.checkClass}}">{{p.checks}}</span></span>
+          <span class="sw-col-updated" style="font-size: 13px; color: var(--sw-text-3)">{{p.updated}}</span>
+        </a>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
+    <div class="sw-card" style="padding: 72px 24px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color: var(--sw-text-3)"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" stroke="currentColor" stroke-width="1.5"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">No projects yet</h2>
+        <p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--sw-text-2)">Start from a brief, or import a store you already run.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+        <a class="sw-btn sw-btn--primary" href="#new">New project</a>
+        <a class="sw-btn sw-btn--secondary" href="#import">Import a store</a>
+      </div>
+      <code style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">npx specwright init</code>
+    </div>
+  </sc-if>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"empty":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var empty = !!this.props.empty;
+    return {
+      themeClass: this.props.dark ? 'sw dark' : 'sw',
+      hasProjects: !empty,
+      isEmpty: empty,
+      projects: [
+        { name: 'Hale & Field', domain: 'halefield.com', platform: 'WooCommerce', stage: 'Client review · v3', checks: '42 passed', checkClass: 'sw-status is-pass', updated: '12 min ago', href: 'Review.dc.html' },
+        { name: 'Osterberg Cycles', domain: 'osterberg.cc', platform: 'WooCommerce', stage: 'Build · fixing 1 issue', checks: 'Running', checkClass: 'sw-status is-run', updated: 'Now', href: 'Build.dc.html' },
+        { name: 'Atlas Outdoor', domain: 'atlas-outdoor.co.uk', platform: 'WooCommerce', stage: 'Verify', checks: '2 failing', checkClass: 'sw-status is-fail', updated: '3 h ago', href: '#atlas' },
+        { name: 'Mira Skin', domain: 'miraskin.de', platform: 'Shopify', stage: 'Design · 3 directions', checks: 'Not built', checkClass: 'sw-status is-idle', updated: '5 h ago', href: '#mira' },
+        { name: 'Kettle & Kiln Coffee', domain: 'kettleandkiln.com', platform: 'WooCommerce', stage: 'Live', checks: '1 warning', checkClass: 'sw-status is-warn', updated: 'Yesterday', href: '#kettle' },
+        { name: 'Lune Atelier', domain: 'lune-atelier.fr', platform: 'Shopify', stage: 'Brief', checks: 'Not built', checkClass: 'sw-status is-idle', updated: 'Oct 28', href: '#lune' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

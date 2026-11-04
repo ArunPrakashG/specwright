@@ -1,0 +1,72 @@
+/* Hale & Field: a sample client store, as Specwright's reference renderer outputs it.
+   Its own tokens (hf-*), separate from Specwright's (sw-*). Container queries, so it
+   reflows inside any preview pane. */
+
+.hf {
+  --hf-bg: #F2F0EB;
+  --hf-ink: #22201C;
+  --hf-ink-2: #5A554C;
+  --hf-line: #DDD8CE;
+  --hf-moss: #4E5D3A;
+  --hf-accent: #A85F2C;
+  --hf-tile-1: #D9CFC0;
+  --hf-tile-2: #C9D0C1;
+  --hf-tile-3: #E4DCD2;
+  --hf-serif: "Instrument Serif", Georgia, serif;
+  --hf-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  container-type: inline-size;
+  background: var(--hf-bg);
+  color: var(--hf-ink);
+  font-family: var(--hf-sans);
+}
+.hf *, .hf *::before, .hf *::after { box-sizing: border-box; }
+
+.hf-in { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+.hf-region { position: relative; }
+.hf-pin { position: absolute; z-index: 4; }
+
+.hf-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; border-bottom: 1px solid var(--hf-line); }
+.hf-word { font-family: var(--hf-serif); font-size: 26px; line-height: 1; }
+.hf-links { display: flex; gap: 28px; font-size: 14px; }
+.hf-links a { color: var(--hf-ink); text-decoration: none; }
+.hf-menu { display: none; }
+
+.hf-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: 72px 0; }
+.hf-h1 { margin: 0; font-family: var(--hf-serif); font-weight: 400; font-size: 72px; line-height: 72px; letter-spacing: -0.01em; }
+.hf-lead { margin: 20px 0 32px; font-size: 17px; line-height: 27px; color: var(--hf-ink-2); max-width: 40ch; }
+.hf-btn { display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border: 0; border-radius: 2px; background: var(--hf-moss); color: #FFFFFF; font: 500 15px/1 var(--hf-sans); text-decoration: none; cursor: pointer; }
+.hf-tile { display: flex; align-items: flex-end; justify-content: center; border-radius: 2px; overflow: hidden; }
+
+.hf-sec { padding: 64px 0; border-top: 1px solid var(--hf-line); }
+.hf-sechead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+.hf-h2 { margin: 0; font-family: var(--hf-serif); font-weight: 400; font-size: 40px; line-height: 44px; }
+.hf-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.hf-card { display: flex; flex-direction: column; gap: 12px; color: var(--hf-ink); text-decoration: none; }
+.hf-card-meta { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.hf-price { color: var(--hf-ink-2); font-variant-numeric: tabular-nums; }
+
+.hf-story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.hf-body { margin: 16px 0 20px; font-size: 16px; line-height: 26px; color: var(--hf-ink-2); max-width: 44ch; }
+.hf-textlink { color: var(--hf-ink); font-size: 15px; text-underline-offset: 4px; }
+
+.hf-news { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+.hf-form { display: flex; gap: 8px; flex: 1 1 360px; max-width: 460px; }
+.hf-input { flex: 1; min-width: 0; height: 48px; padding: 0 14px; border: 1px solid #8A8274; border-radius: 2px; background: #FFFFFF; color: var(--hf-ink); font: 400 15px/1 var(--hf-sans); }
+.hf-btn--accent { background: var(--hf-accent); }
+
+.hf-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid var(--hf-line); font-size: 13px; color: var(--hf-ink-2); }
+
+@container (max-width: 720px) {
+  .hf-in { padding: 0 20px; }
+  .hf-head { height: 60px; }
+  .hf-links { display: none; }
+  .hf-menu { display: inline-flex; }
+  .hf-hero { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 36px 0 48px; }
+  .hf-h1 { font-size: 44px; line-height: 46px; }
+  .hf-lead { margin: 14px 0 24px; font-size: 16px; line-height: 25px; }
+  .hf-sec { padding: 44px 0; }
+  .hf-h2 { font-size: 32px; line-height: 36px; }
+  .hf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .hf-story { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .hf-form { flex-basis: 100%; }
+}

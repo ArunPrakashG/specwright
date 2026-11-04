@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Specwright · Foundations</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; background: var(--sw-bg); color: var(--sw-text); font-family: var(--sw-font-sans); padding: 0 0 96px">
+
+<header class="sw-wrap sw-bar" style="border-bottom: 1px solid var(--sw-border); max-width: none">
+  <div style="display: flex; align-items: center; gap: 10px; color: var(--sw-text)">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" stroke="currentColor" stroke-width="2"></path><rect x="9" y="9" width="6" height="6" style="fill: var(--sw-accent)"></rect></svg>
+    <span style="font-weight: 600; font-size: 16px; letter-spacing: -0.01em">Specwright</span>
+  </div>
+  <span style="font-size: 13px; color: var(--sw-text-3)">Foundations v1</span>
+</header>
+
+<main class="sw-wrap" style="display: flex; flex-direction: column; gap: 96px; padding-top: 80px">
+
+  <section aria-labelledby="purpose" style="display: flex; flex-direction: column; gap: 24px; max-width: 980px">
+    <h1 id="purpose" style="margin: 0; font-size: 48px; line-height: 56px; font-weight: 600; letter-spacing: -0.025em">Turn a client brief into a store they own, on any platform, verified before it ships.</h1>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; color: var(--sw-text-2)">
+      <span>Open source engine</span><span>Hosted service</span><span>WooCommerce first, Shopify next</span>
+    </div>
+  </section>
+
+  <section aria-labelledby="brand" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px">
+    <h2 id="brand" style="grid-column: 1 / -1; margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Brand</h2>
+    <div class="sw-card" style="padding: 32px; display: flex; flex-direction: column; gap: 32px; justify-content: space-between; min-height: 300px">
+      <svg width="72" height="72" viewBox="0 0 24 24" fill="none" role="img" aria-label="Specwright mark: corner brackets locked on a square"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" stroke="currentColor" stroke-width="1.6"></path><rect x="9" y="9" width="6" height="6" style="fill: var(--sw-accent)"></rect></svg>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span style="font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -0.02em">Specwright</span>
+        <span style="font-size: 14px; color: var(--sw-text-2)">Precise. Calm. Candid.</span>
+      </div>
+    </div>
+    <div class="sw-card" style="padding: 32px; display: flex; flex-direction: column; gap: 24px; min-height: 300px">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+        <h3 style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 600">Signature: lock-on</h3>
+        <button class="sw-btn sw-btn--secondary" type="button" onClick="{{replay}}">Replay</button>
+      </div>
+      <p style="margin: 0; font-size: 14px; line-height: 20px; color: var(--sw-text-2); max-width: 46ch">Every element carries its spec id. Select it anywhere, in the spec, a build report or a client comment, and the brackets lock on.</p>
+      <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 16px 16px; background: var(--sw-surface-2); border-radius: var(--sw-radius-md)">
+        <div style="position: relative; padding: 12px 16px; background: #F2F0EB; color: #22201C; border-radius: 2px">
+          <span style="font-family: Georgia, serif; font-size: 28px; line-height: 34px">Stoneware, made slowly.</span>
+          <sc-if value="{{a}}" hint-placeholder-val="{{ true }}">
+            <span class="sw-brackets sw-lock" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="sw-tag sw-locktag sw-rise">home.hero.heading</span>
+          </sc-if>
+          <sc-if value="{{b}}" hint-placeholder-val="{{ false }}">
+            <span class="sw-brackets sw-lock" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="sw-tag sw-locktag sw-rise">home.hero.heading</span>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="color" style="display: flex; flex-direction: column; gap: 24px">
+    <h2 id="color" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Color</h2>
+    <div class="sw-card" style="overflow-x: auto">
+      <div style="min-width: 640px">
+        <div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 12px 20px; border-bottom: 1px solid var(--sw-border); font-size: 13px; color: var(--sw-text-3)">
+          <span>Token</span><span>Light</span><span>Dark</span>
+        </div>
+        <sc-for list="{{colors}}" as="c" hint-placeholder-count="14">
+          <div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--sw-border)">
+            <span class="sw-mono" style="font-family: var(--sw-font-mono); font-size: 13px">{{c.name}}</span>
+            <span style="display: flex; align-items: center; gap: 10px; font-family: var(--sw-font-mono); font-size: 13px; color: var(--sw-text-2)"><span style="{{c.lightChip}}"></span>{{c.light}}</span>
+            <span style="display: flex; align-items: center; gap: 10px; font-family: var(--sw-font-mono); font-size: 13px; color: var(--sw-text-2)"><span style="{{c.darkChip}}"></span>{{c.dark}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 13px; color: var(--sw-text-3)">One accent, Draft Blue, does the work: primary actions, spec tags, brackets, pins. Status always pairs color with text.</p>
+  </section>
+
+  <section aria-labelledby="type" style="display: flex; flex-direction: column; gap: 24px">
+    <h2 id="type" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Type</h2>
+    <div class="sw-card" style="padding: 8px 24px">
+      <sc-for list="{{type}}" as="t" hint-placeholder-count="8">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid var(--sw-border)">
+          <span style="width: 200px; flex: none; font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">{{t.token}}</span>
+          <span style="{{t.style}}">{{t.sample}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin: 0; font-size: 13px; color: var(--sw-text-3)">Geist for interface, Geist Mono for spec ids, code and numbers in reports.</p>
+  </section>
+
+  <section aria-labelledby="space" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px">
+    <h2 id="space" style="grid-column: 1 / -1; margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Space, radius, elevation</h2>
+    <div class="sw-card" style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+      <sc-for list="{{space}}" as="s" hint-placeholder-count="8">
+        <div style="display: flex; align-items: center; gap: 16px">
+          <span style="width: 92px; font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">{{s.token}}</span>
+          <span style="{{s.bar}}"></span>
+          <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-2)">{{s.px}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div class="sw-card" style="padding: 24px; display: flex; flex-wrap: wrap; gap: 20px; align-content: start">
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><span style="width: 64px; height: 64px; border: 1px solid var(--sw-border-strong); background: var(--sw-surface-2); border-radius: 4px"></span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">sm 4</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><span style="width: 64px; height: 64px; border: 1px solid var(--sw-border-strong); background: var(--sw-surface-2); border-radius: 6px"></span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">md 6</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><span style="width: 64px; height: 64px; border: 1px solid var(--sw-border-strong); background: var(--sw-surface-2); border-radius: 10px"></span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">lg 10</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><span style="width: 64px; height: 64px; border: 1px solid var(--sw-border-strong); background: var(--sw-surface-2); border-radius: 14px"></span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">xl 14</span></div>
+      <div style="flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 20px; padding-top: 12px">
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><span style="width: 96px; height: 64px; background: var(--sw-surface); border: 1px solid var(--sw-border); border-radius: 10px"></span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">flat · border</span></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><span style="width: 96px; height: 64px; background: var(--sw-surface); box-shadow: var(--sw-shadow-1); border-radius: 10px"></span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">shadow-1</span></div>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center"><span style="width: 96px; height: 64px; background: var(--sw-surface); box-shadow: var(--sw-shadow-2); border-radius: 10px"></span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">shadow-2</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="motion" style="display: flex; flex-direction: column; gap: 24px">
+    <h2 id="motion" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Motion</h2>
+    <div class="sw-card" style="overflow-x: auto">
+      <div style="min-width: 640px">
+        <sc-for list="{{motion}}" as="m" hint-placeholder-count="8">
+          <div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.8fr); gap: 16px; padding: 12px 20px; border-bottom: 1px solid var(--sw-border); font-size: 13px">
+            <span style="font-family: var(--sw-font-mono)">{{m.token}}</span>
+            <span style="font-family: var(--sw-font-mono); color: var(--sw-text-2)">{{m.value}}</span>
+            <span style="color: var(--sw-text-2)">{{m.use}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 13px; color: var(--sw-text-3)">Transform and opacity only. With reduced motion, brackets and tags appear in place without scale or rise, and status dots stop pulsing.</p>
+  </section>
+
+  <section aria-labelledby="components" style="display: flex; flex-direction: column; gap: 24px">
+    <h2 id="components" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Components</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px">
+
+      <div class="sw-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">Button</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <button class="sw-btn sw-btn--primary" type="button">Approve v3</button>
+          <button class="sw-btn sw-btn--secondary" type="button">Compare</button>
+          <button class="sw-btn sw-btn--ghost" type="button">Cancel</button>
+          <button class="sw-btn sw-btn--secondary sw-btn--icon" type="button" aria-label="Copy command"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"></rect><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5" stroke="currentColor" stroke-width="1.5"></path></svg></button>
+        </div>
+      </div>
+
+      <div class="sw-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">Status</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px 20px">
+          <span class="sw-status is-pass">Passed</span>
+          <span class="sw-status is-warn">1 warning</span>
+          <span class="sw-status is-fail">2 failing</span>
+          <span class="sw-status is-run">Running</span>
+          <span class="sw-status is-idle">Not built</span>
+        </div>
+      </div>
+
+      <div class="sw-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">Spec tag · triage label · pin</span>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+          <span class="sw-tag">home.hero.heading</span>
+          <span class="sw-tag is-fail">home.newsletter.button</span>
+          <span class="sw-label">Copy</span>
+          <span class="sw-label">Design</span>
+          <span class="sw-label is-quote">Needs quote</span>
+          <button class="sw-pin" type="button" aria-label="Comment 1">1</button>
+          <button class="sw-pin is-done" type="button" aria-label="Comment 4, resolved">4</button>
+        </div>
+      </div>
+
+      <div class="sw-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">Field · segmented</span>
+        <div class="sw-field">
+          <label for="f-heading">Heading</label>
+          <input id="f-heading" class="sw-input" value="Stoneware, made slowly.">
+        </div>
+        <div class="sw-seg" role="group" aria-label="Viewport">
+          <button type="button" aria-pressed="true">Desktop</button>
+          <button type="button" aria-pressed="false">Mobile</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":2900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { n: 0 };
+  }
+  renderVals() {
+    var chip = function (hex) { return 'width: 28px; height: 28px; border-radius: 6px; flex: none; border: 1px solid rgba(127,127,127,.25); background: ' + hex; };
+    var rows = [
+      ['--sw-bg', '#F6F7F9', '#0B0D11'],
+      ['--sw-surface', '#FFFFFF', '#12151B'],
+      ['--sw-surface-2', '#F0F2F5', '#191D24'],
+      ['--sw-border', '#E2E5EA', '#262B34'],
+      ['--sw-border-strong', '#CDD2DA', '#353B46'],
+      ['--sw-text', '#0E1116', '#E9EBEF'],
+      ['--sw-text-2', '#474F5C', '#AEB4BF'],
+      ['--sw-text-3', '#646C7A', '#8B93A1'],
+      ['--sw-accent', '#1F4FD8', '#7D97FF'],
+      ['--sw-accent-soft', '#E8EEFD', '#1A2342'],
+      ['--sw-pass', '#13703F', '#4CC38A'],
+      ['--sw-warn', '#9A5300', '#E9A23B'],
+      ['--sw-fail', '#C2332A', '#FF7A6E']
+    ];
+    var self = this;
+    return {
+      themeClass: this.props.dark ? 'sw dark' : 'sw',
+      a: this.state.n % 2 === 0,
+      b: this.state.n % 2 === 1,
+      replay: function () { self.setState({ n: self.state.n + 1 }); },
+      colors: rows.map(function (r) { return { name: r[0], light: r[1], dark: r[2], lightChip: chip(r[1]), darkChip: chip(r[2]) }; }),
+      type: [
+        { token: '4xl · 48/56 · 600', sample: 'From brief to store', style: 'font-size: 48px; line-height: 56px; font-weight: 600; letter-spacing: -0.025em' },
+        { token: '3xl · 32/40 · 600', sample: 'Hale & Field', style: 'font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -0.02em' },
+        { token: '2xl · 24/32 · 600', sample: 'Build run #14', style: 'font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.01em' },
+        { token: 'xl · 20/28 · 600', sample: 'Accessibility', style: 'font-size: 20px; line-height: 28px; font-weight: 600' },
+        { token: 'lg · 16/24 · 400', sample: 'Can the headline feel warmer?', style: 'font-size: 16px; line-height: 24px' },
+        { token: 'md · 14/20 · 400', sample: 'Text contrast 2.9:1 on the story link. Needs 4.5:1.', style: 'font-size: 14px; line-height: 20px' },
+        { token: 'sm · 13/18 · 500', sample: 'Updated 12 min ago', style: 'font-size: 13px; line-height: 18px; font-weight: 500; color: var(--sw-text-2)' },
+        { token: 'mono · 12/16 · 500', sample: 'specwright build --target woocommerce', style: 'font-family: var(--sw-font-mono); font-size: 12px; line-height: 16px; font-weight: 500' }
+      ],
+      space: [1, 2, 3, 4, 5, 6, 7, 8].map(function (i) {
+        var px = [4, 8, 12, 16, 24, 32, 48, 64][i - 1];
+        return { token: '--sw-space-' + i, px: px + 'px', bar: 'height: 12px; border-radius: 2px; background: var(--sw-accent); width: ' + (px * 3) + 'px' };
+      }),
+      motion: [
+        { token: '--sw-dur-fast', value: '120ms', use: 'Press, hover' },
+        { token: '--sw-dur-base', value: '200ms', use: 'Tag rise, menus, pin scale' },
+        { token: '--sw-dur-slow', value: '320ms', use: 'Lock-on, panels' },
+        { token: '--sw-ease-standard', value: 'cubic-bezier(.2, 0, 0, 1)', use: 'Enter and move' },
+        { token: '--sw-ease-exit', value: 'cubic-bezier(.4, 0, 1, 1)', use: 'Leave' },
+        { token: '--sw-ease-spring', value: 'cubic-bezier(.34, 1.4, .64, 1)', use: 'Lock-on and pins only' },
+        { token: '--sw-stagger', value: '40ms', use: 'Tag after brackets, list items' },
+        { token: 'lock-on', value: 'scale 1.06 → 1, fade in', use: 'The one signature animation, reused everywhere a spec id is selected' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

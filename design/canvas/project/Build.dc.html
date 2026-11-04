@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Specwright · Hale &amp; Field · Build #14</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="store.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; background: var(--sw-bg); color: var(--sw-text); font-family: var(--sw-font-sans)">
+
+<header style="background: var(--sw-surface); border-bottom: 1px solid var(--sw-border)">
+  <div class="sw-wrap sw-bar">
+    <a href="Projects.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none" aria-label="Specwright home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" stroke="currentColor" stroke-width="2"></path><rect x="9" y="9" width="6" height="6" style="fill: var(--sw-accent)"></rect></svg>
+      <span style="font-weight: 600; font-size: 15px">Northline Studio</span>
+    </a>
+    <nav class="sw-nav" aria-label="Workspace" style="flex: 1">
+      <a href="Projects.dc.html" aria-current="page">Projects</a>
+      <a href="#sections">Sections</a>
+      <a href="#settings">Settings</a>
+    </nav>
+    <button class="sw-btn sw-btn--ghost sw-btn--icon" type="button" aria-label="Account: Ana Ruiz" style="border-radius: 50%; background: var(--sw-surface-2); color: var(--sw-text); font-size: 12px; font-weight: 600">AR</button>
+  </div>
+  <div class="sw-wrap" style="display: flex; flex-direction: column; gap: 12px; padding-top: 16px">
+    <div style="display: flex; align-items: baseline; gap: 12px">
+      <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.01em">Hale &amp; Field</h1>
+      <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">spec v4</span>
+    </div>
+    <nav class="sw-tabs" aria-label="Project" style="border-bottom: 0">
+      <a href="Spec.dc.html">Spec</a>
+      <a href="Build.dc.html" aria-current="page">Builds</a>
+      <a href="Review.dc.html">Review</a>
+      <a href="#settings">Settings</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sw-wrap" style="display: flex; flex-wrap: wrap; gap: 24px; padding-top: 24px; padding-bottom: 48px; align-items: flex-start">
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+          <h2 style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Build #14</h2>
+          <span class="sw-status is-run">Fixing 1 issue</span>
+        </div>
+        <span style="font-size: 13px; color: var(--sw-text-3)">WooCommerce · started 2 min ago by Ana Ruiz</span>
+      </div>
+      <button class="sw-btn sw-btn--secondary" type="button">Cancel</button>
+    </div>
+
+    <ol class="sw-card" aria-label="Pipeline" style="list-style: none; margin: 0; padding: 4px 0">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="7">
+        <li style="display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 20px">
+          <span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; width: 20px; height: 20px">
+            <sc-if value="{{s.done}}" hint-placeholder-val="{{ true }}">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color: var(--sw-pass)"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2"></path></svg>
+            </sc-if>
+            <sc-if value="{{s.failed}}" hint-placeholder-val="{{ false }}">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color: var(--sw-fail)"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="2"></path></svg>
+            </sc-if>
+            <sc-if value="{{s.running}}" hint-placeholder-val="{{ false }}">
+              <svg class="sw-spin" width="16" height="16" viewBox="0 0 16 16" fill="none" style="color: var(--sw-accent)"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity=".25" stroke-width="2"></circle><path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2"></path></svg>
+            </sc-if>
+            <sc-if value="{{s.waiting}}" hint-placeholder-val="{{ false }}">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color: var(--sw-text-3)"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"></circle></svg>
+            </sc-if>
+          </span>
+          <span style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; min-width: 0">
+            <span style="font-size: 14px; font-weight: 500">{{s.name}}</span>
+            <span style="font-size: 13px; color: var(--sw-text-3)">{{s.detail}}</span>
+          </span>
+          <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">{{s.time}}</span>
+        </li>
+      </sc-for>
+    </ol>
+
+    <section aria-labelledby="checks" class="sw-card">
+      <h3 id="checks" style="margin: 0; padding: 16px 20px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--sw-border)">Checks</h3>
+      <sc-for list="{{checks}}" as="c" hint-placeholder-count="6">
+        <div style="padding: 14px 20px; border-bottom: 1px solid var(--sw-border); display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; min-width: 0">
+              <span style="font-size: 14px; font-weight: 500">{{c.name}}</span>
+              <span style="font-size: 13px; color: var(--sw-text-3)">{{c.detail}}</span>
+            </div>
+            <span class="{{c.cls}}">{{c.result}}</span>
+          </div>
+          <sc-if value="{{c.issue}}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: var(--sw-radius-md); background: var(--sw-surface-2)">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px">
+                <span class="sw-tag is-fail">home.story.link</span>
+                <span style="font-size: 14px">Text contrast 2.9:1. Needs 4.5:1.</span>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px">
+                <span style="font-size: 13px; color: var(--sw-text-2)">Fix: link color <code style="font-family: var(--sw-font-mono)">#9A8F7E</code> → <code style="font-family: var(--sw-font-mono)">--hf-ink</code></span>
+                <span class="sw-status is-run">Applying</span>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </section>
+  </div>
+
+  <aside style="flex: 1 1 340px; max-width: 100%; display: flex; flex-direction: column; gap: 24px">
+    <section aria-labelledby="failing" class="sw-card" style="overflow: hidden">
+      <h3 id="failing" style="margin: 0; padding: 16px 20px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--sw-border)">Failing element · mobile</h3>
+      <div style="padding: 48px 20px 28px; background: var(--sw-surface-2)">
+        <div class="hf" style="padding: 28px 24px; box-shadow: var(--sw-shadow-1)">
+          <h4 style="margin: 0; font-family: var(--hf-serif); font-weight: 400; font-size: 30px; line-height: 34px">Fired twice, used daily.</h4>
+          <p style="margin: 12px 0 18px; font-size: 15px; line-height: 24px; color: var(--hf-ink-2)">Every piece is thrown by hand, bisque fired, glazed, then fired again.</p>
+          <span style="position: relative; display: inline-block">
+            <a href="#about" style="color: #9A8F7E; font-size: 15px; text-underline-offset: 4px">Read our story</a>
+            <span class="sw-brackets is-fail sw-lock" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="sw-tag is-fail sw-locktag sw-rise">home.story.link</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="cli" class="sw-card" style="padding: 16px 20px; display: flex; flex-direction: column; gap: 12px">
+      <h3 id="cli" style="margin: 0; font-size: 14px; font-weight: 600">Run locally</h3>
+      <div style="display: flex; align-items: center; gap: 8px">
+        <code style="flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; padding: 9px 12px; border-radius: var(--sw-radius-md); background: var(--sw-surface-2); font-family: var(--sw-font-mono); font-size: 12px">specwright build --target woocommerce</code>
+        <button class="sw-btn sw-btn--secondary sw-btn--icon" type="button" aria-label="Copy command"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"></rect><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5" stroke="currentColor" stroke-width="1.5"></path></svg></button>
+      </div>
+    </section>
+  </aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var step = function (name, detail, time, state) {
+      return { name: name, detail: detail, time: time, done: state === 'done', failed: state === 'failed', running: state === 'running', waiting: state === 'waiting' };
+    };
+    var check = function (name, detail, result, cls, issue) { return { name: name, detail: detail, result: result, cls: 'sw-status ' + cls, issue: !!issue }; };
+    return {
+      themeClass: this.props.dark ? 'sw dark' : 'sw',
+      steps: [
+        step('Spec validated', 'v4 · 3 markets', '0.3 s', 'done'),
+        step('Theme generated', '38 files · 12 patterns', '41 s', 'done'),
+        step('Catalog synced', '24 products', '9 s', 'done'),
+        step('Preview started', 'WordPress Playground', '6 s', 'done'),
+        step('Checks', '41 of 42 passed', '38 s', 'failed'),
+        step('Auto-fix', 'Attempt 1 of 3', '', 'running'),
+        step('Re-run checks', '', '', 'waiting')
+      ],
+      checks: [
+        check('Storefront journey', 'Browse, filter, product, variant, cart, test payment', '6 of 6', 'is-pass'),
+        check('Accessibility', 'WCAG 2.2 AA', '1 failing', 'is-fail', true),
+        check('Performance', 'Mobile · LCP 1.4 s · CLS 0.01 · JS 18 kB', 'Passed', 'is-pass'),
+        check('Block markup', '46 of 46 valid in the editor', 'Passed', 'is-pass'),
+        check('Coding standards', 'WordPress · 0 errors', 'Passed', 'is-pass'),
+        check('Visual match', '7 sections · max diff 0.6%', 'Passed', 'is-pass')
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

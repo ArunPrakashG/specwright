@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hale &amp; Field · Home (reference render)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="store.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="width: 100%; font-family: var(--hf-sans); color: var(--hf-ink)">
+
+  <header class="hf-in hf-head hf-region" data-spec-id="home.header">
+      <sc-if value="{{s_header}}" hint-placeholder-val="{{ false }}">
+        <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="{{tagClass}}">{{sel}}</span>
+      </sc-if>
+    <span class="hf-word">Hale &amp; Field</span>
+    <nav class="hf-links" aria-label="Store">
+      <a href="#shop">Shop</a><a href="#journal">Journal</a><a href="#about">About</a><a href="#cart">Cart (2)</a>
+    </nav>
+    <a class="hf-menu" href="#menu" style="color: var(--hf-ink); font-size: 14px">Menu</a>
+  </header>
+
+  <div class="hf-in">
+    <section class="hf-region hf-hero" data-spec-id="home.hero" aria-labelledby="hf-h1">
+      <sc-if value="{{s_hero}}" hint-placeholder-val="{{ false }}">
+        <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="{{tagClass}}">{{sel}}</span>
+      </sc-if>
+      <div>
+        <div class="hf-region" data-spec-id="home.hero.heading" style="display: inline-block">
+          <h1 id="hf-h1" class="hf-h1">Stoneware, made slowly.</h1>
+          <sc-if value="{{s_heading}}" hint-placeholder-val="{{ true }}">
+            <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="{{tagClass}}">{{sel}}</span>
+          </sc-if>
+          <sc-if value="{{showPins}}" hint-placeholder-val="{{ false }}">
+            <button class="{{p1Class}}" type="button" style="position: absolute; top: -14px; right: -14px; z-index: 4" aria-label="Comment 1" onClick="{{pin1}}">1</button>
+          </sc-if>
+        </div>
+        <p class="hf-lead">Small-batch tableware, thrown and glazed in our Bristol studio. Shipped to the UK, EU and US.</p>
+        <a class="hf-btn" href="#shop" data-spec-id="home.hero.cta">Shop the collection</a>
+      </div>
+      <div class="hf-tile" style="background: var(--hf-tile-1); aspect-ratio: 5 / 4" data-spec-id="home.hero.image">
+        <svg viewBox="0 0 400 320" width="80%" aria-hidden="true"><path d="M60 200h280a140 96 0 0 1-280 0z" fill="#EDE7DD"></path><path d="M110 150h180a90 58 0 0 1-180 0z" fill="#4E5D3A"></path><path d="M150 112h100a50 32 0 0 1-100 0z" fill="#F2F0EB"></path></svg>
+      </div>
+    </section>
+
+    <section class="hf-region hf-sec" data-spec-id="home.featured" aria-labelledby="hf-feat">
+      <sc-if value="{{s_featured}}" hint-placeholder-val="{{ false }}">
+        <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="{{tagClass}}">{{sel}}</span>
+      </sc-if>
+      <div class="hf-sechead">
+        <h2 id="hf-feat" class="hf-h2">The everyday set</h2>
+        <a class="hf-textlink" href="#shop">View all</a>
+      </div>
+      <div class="hf-grid">
+        <div class="hf-card">
+          <div class="hf-region" data-spec-id="home.featured.card-1.image">
+            <div class="hf-tile" style="background: var(--hf-tile-2); aspect-ratio: 4 / 5; align-items: center">
+              <svg viewBox="0 0 240 240" width="62%" aria-hidden="true"><rect x="62" y="72" width="96" height="112" rx="10" fill="#F2F0EB"></rect><path d="M158 100h16a24 24 0 0 1 0 48h-16" stroke="#F2F0EB" stroke-width="13" fill="none"></path></svg>
+            </div>
+            <sc-if value="{{s_card1}}" hint-placeholder-val="{{ false }}">
+              <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span class="{{tagClass}}">{{sel}}</span>
+            </sc-if>
+            <sc-if value="{{showPins}}" hint-placeholder-val="{{ false }}">
+              <button class="{{p2Class}}" type="button" style="position: absolute; top: 12px; right: 12px; z-index: 4" aria-label="Comment 2" onClick="{{pin2}}">2</button>
+            </sc-if>
+          </div>
+          <span class="hf-card-meta"><a href="#morning-mug" style="color: inherit">Morning mug</a><span class="hf-price">$36</span></span>
+        </div>
+        <div class="hf-card">
+          <div class="hf-tile" style="background: var(--hf-tile-1); aspect-ratio: 4 / 5; align-items: center">
+            <svg viewBox="0 0 240 240" width="70%" aria-hidden="true"><path d="M30 110h180a90 70 0 0 1-180 0z" fill="#4E5D3A"></path></svg>
+          </div>
+          <span class="hf-card-meta"><a href="#pasta-bowl" style="color: inherit">Pasta bowl</a><span class="hf-price">$42</span></span>
+        </div>
+        <div class="hf-card">
+          <div class="hf-tile" style="background: var(--hf-tile-3); aspect-ratio: 4 / 5; align-items: center">
+            <svg viewBox="0 0 240 240" width="74%" aria-hidden="true"><ellipse cx="120" cy="120" rx="96" ry="40" fill="#F2F0EB"></ellipse><ellipse cx="120" cy="118" rx="60" ry="22" fill="#E4DCD2"></ellipse></svg>
+          </div>
+          <span class="hf-card-meta"><a href="#side-plate" style="color: inherit">Side plate</a><span class="hf-price">$30</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="hf-region hf-sec hf-story" data-spec-id="home.story" aria-labelledby="hf-story">
+      <sc-if value="{{s_story}}" hint-placeholder-val="{{ false }}">
+        <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="{{tagClass}}">{{sel}}</span>
+      </sc-if>
+      <div>
+        <h2 id="hf-story" class="hf-h2">Fired twice, used daily.</h2>
+        <p class="hf-body">Every piece is thrown by hand, bisque fired, glazed, then fired again. Dishwasher safe, made to be used.</p>
+        <span class="hf-region" data-spec-id="home.story.link" style="display: inline-block">
+          <a class="hf-textlink" href="#about">Read our story</a>
+          <sc-if value="{{s_storylink}}" hint-placeholder-val="{{ false }}">
+            <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="{{tagClass}}">{{sel}}</span>
+          </sc-if>
+        </span>
+      </div>
+      <div class="hf-tile" style="background: var(--hf-tile-3); aspect-ratio: 3 / 2; align-items: center">
+        <svg viewBox="0 0 360 240" width="64%" aria-hidden="true"><ellipse cx="180" cy="170" rx="130" ry="22" fill="#C8C2B6"></ellipse><ellipse cx="180" cy="150" rx="120" ry="20" fill="#F2F0EB"></ellipse><ellipse cx="180" cy="130" rx="110" ry="18" fill="#C9D0C1"></ellipse><ellipse cx="180" cy="110" rx="100" ry="16" fill="#F2F0EB"></ellipse></svg>
+      </div>
+    </section>
+
+    <section class="hf-region hf-sec" data-spec-id="home.newsletter" aria-labelledby="hf-news">
+      <sc-if value="{{s_newsletter}}" hint-placeholder-val="{{ false }}">
+        <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="{{tagClass}}">{{sel}}</span>
+      </sc-if>
+      <div class="hf-news">
+        <h2 id="hf-news" class="hf-h2">Kiln notes, once a month.</h2>
+        <form class="hf-form" action="#subscribe">
+          <label for="hf-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email</label>
+          <input id="hf-email" class="hf-input" type="email" placeholder="you@example.com">
+          <span class="hf-region" data-spec-id="home.newsletter.button" style="display: inline-flex">
+            <button class="hf-btn hf-btn--accent" type="button">Subscribe</button>
+            <sc-if value="{{s_button}}" hint-placeholder-val="{{ false }}">
+              <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span class="{{tagClass}}">{{sel}}</span>
+            </sc-if>
+            <sc-if value="{{showPins}}" hint-placeholder-val="{{ false }}">
+              <button class="{{p4Class}}" type="button" style="position: absolute; top: -14px; right: -14px; z-index: 4" aria-label="Comment 4, resolved" onClick="{{pin4}}">4</button>
+            </sc-if>
+          </span>
+        </form>
+      </div>
+    </section>
+
+    <footer class="hf-foot hf-region" data-spec-id="home.footer">
+      <sc-if value="{{s_footer}}" hint-placeholder-val="{{ false }}">
+        <span class="{{bracketsClass}}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="{{tagClass}}">{{sel}}</span>
+      </sc-if>
+      <span>Hale &amp; Field Studio, Bristol</span>
+      <span>Shipping · Returns · Privacy · Accessibility</span>
+    </footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"selected":{"editor":"enum","options":["none","home.header","home.hero","home.hero.heading","home.featured","home.featured.card-1.image","home.story","home.story.link","home.newsletter","home.newsletter.button","home.footer"],"default":"home.hero.heading"},"tone":{"editor":"enum","options":["accent","fail"],"default":"accent"},"pins":{"editor":"boolean","default":false},"activePin":{"editor":"int","default":0},"dark":{"editor":"boolean","default":false},"onPin":{"editor":null},"$preview":{"width":960,"height":1460}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var s = this.props.selected ?? 'home.hero.heading';
+    var fail = this.props.tone === 'fail' ? ' is-fail' : '';
+    var active = this.props.activePin ?? 0;
+    var onPin = this.props.onPin;
+    var pinClass = function (n, done) { return 'sw-pin' + (done ? ' is-done' : '') + (active === n ? ' is-active' : ''); };
+    var fire = function (n) { return function (e) { if (e && e.preventDefault) e.preventDefault(); if (onPin) onPin(n); }; };
+    return {
+      rootClass: 'sw' + (this.props.dark ? ' dark' : '') + ' hf',
+      sel: s,
+      s_header: s === 'home.header',
+      s_story: s === 'home.story',
+      s_footer: s === 'home.footer',
+      s_hero: s === 'home.hero',
+      s_heading: s === 'home.hero.heading',
+      s_featured: s === 'home.featured',
+      s_card1: s === 'home.featured.card-1.image',
+      s_storylink: s === 'home.story.link',
+      s_newsletter: s === 'home.newsletter',
+      s_button: s === 'home.newsletter.button',
+      bracketsClass: 'sw-brackets sw-lock' + fail,
+      tagClass: 'sw-tag sw-locktag sw-rise' + fail,
+      showPins: !!this.props.pins,
+      p1Class: pinClass(1, false),
+      p2Class: pinClass(2, false),
+      p4Class: pinClass(4, true),
+      pin1: fire(1),
+      pin2: fire(2),
+      pin4: fire(4)
+    };
+  }
+}
+</script>
+</body>
+</html>

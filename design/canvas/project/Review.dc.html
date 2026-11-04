@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Review · Hale &amp; Field · Home v3</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="store.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; background: var(--sw-bg); color: var(--sw-text); font-family: var(--sw-font-sans)">
+
+<header style="background: var(--sw-surface); border-bottom: 1px solid var(--sw-border)">
+  <div class="sw-wrap sw-bar" style="justify-content: space-between">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; min-width: 0">
+      <span style="display: flex; align-items: center; gap: 10px">
+        <span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; background: var(--sw-text); color: var(--sw-bg); font-size: 13px; font-weight: 600">N</span>
+        <span style="font-weight: 600; font-size: 15px">Northline Studio</span>
+      </span>
+      <span aria-hidden="true" style="color: var(--sw-border-strong)">/</span>
+      <h1 style="margin: 0; font-size: 15px; font-weight: 500">Hale &amp; Field · Home</h1>
+      <label style="display: flex; align-items: center">
+        <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Version</span>
+        <select class="sw-input" style="width: auto; height: 32px; font-size: 13px">
+          <option>v3 · today</option>
+          <option>v2 · Oct 30</option>
+          <option>v1 · Oct 27</option>
+        </select>
+      </label>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+      <div class="sw-seg" role="group" aria-label="Viewport">
+        <button type="button" aria-pressed="{{deskPressed}}" onClick="{{toDesk}}">Desktop</button>
+        <button type="button" aria-pressed="{{mobPressed}}" onClick="{{toMob}}">Mobile</button>
+      </div>
+      <button class="sw-btn sw-btn--primary" type="button">Approve v3</button>
+      <span aria-label="Signed in as Maya Chen" style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--sw-surface-2); font-size: 12px; font-weight: 600">MC</span>
+    </div>
+  </div>
+</header>
+
+<main class="sw-wrap" style="display: flex; flex-wrap: wrap; gap: 24px; padding-top: 24px; padding-bottom: 48px; align-items: flex-start">
+
+  <section aria-label="Page preview" style="flex: 999 1 560px; min-width: 0">
+    <div style="height: 840px; overflow: auto; background: var(--sw-surface-2); border: 1px solid var(--sw-border); border-radius: var(--sw-radius-lg); padding: 44px 24px 24px">
+      <div style="margin: 0 auto; width: 100%; max-width: {{previewMax}}; box-shadow: var(--sw-shadow-1)">
+        <dc-import name="StorePreview" selected="{{sel}}" pins="{{yes}}" active-pin="{{active}}" on-pin="{{pick}}" dark="{{dark}}" hint-size="100%,1460px"></dc-import>
+      </div>
+    </div>
+  </section>
+
+  <aside aria-labelledby="comments" style="flex: 1 1 340px; max-width: 100%; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+      <h2 id="comments" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 600">Comments</h2>
+      <span style="font-size: 13px; color: var(--sw-text-3)">3 open · 1 resolved</span>
+    </div>
+
+    <sc-for list="{{threads}}" as="t" hint-placeholder-count="4">
+      <article class="sw-card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; border-color: {{t.border}}">
+        <button type="button" onClick="{{t.select}}" aria-pressed="{{t.pressed}}" style="appearance: none; background: none; border: 0; padding: 0; margin: 0; width: 100%; color: inherit; font: inherit; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 8px; border-radius: var(--sw-radius-sm)">
+          <span style="display: flex; align-items: center; gap: 10px">
+            <span class="{{t.pinClass}}" aria-hidden="true" style="width: 24px; height: 24px; line-height: 20px; flex: none; box-shadow: none; cursor: inherit">{{t.n}}</span>
+            <span style="font-size: 13px; font-weight: 500">Maya Chen</span>
+            <span style="font-size: 13px; color: var(--sw-text-3)">{{t.when}}</span>
+            <span class="{{t.statusClass}}" style="margin-left: auto">{{t.status}}</span>
+          </span>
+          <span style="font-size: 14px; line-height: 20px">{{t.body}}</span>
+        </button>
+        <span style="display: flex; flex-wrap: wrap; gap: 6px">
+          <span class="sw-tag">{{t.spec}}</span>
+          <span class="{{t.labelClass}}">{{t.label}}</span>
+        </span>
+        <sc-if value="{{t.hasReply}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: var(--sw-radius-md); background: var(--sw-surface-2)">
+            <span style="font-size: 13px; font-weight: 500">Ana Ruiz <span style="font-weight: 400; color: var(--sw-text-3)">Northline</span></span>
+            <span style="font-size: 14px; line-height: 20px; color: var(--sw-text-2)">{{t.reply}}</span>
+          </div>
+        </sc-if>
+      </article>
+    </sc-for>
+
+    <form class="sw-card" action="#reply" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <label for="reply" style="font-size: 13px; font-weight: 500; color: var(--sw-text-2)">Reply to #{{active}}</label>
+      <textarea id="reply" class="sw-input" rows="2"></textarea>
+      <button class="sw-btn sw-btn--secondary" type="button" style="align-self: flex-end">Send</button>
+    </form>
+  </aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { active: 1, mobile: false };
+  }
+  renderVals() {
+    var self = this;
+    var active = this.state.active;
+    var data = [
+      { n: 1, when: '2 h ago', body: 'Can the headline feel warmer? “Made slowly” reads a little cold.', spec: 'home.hero.heading', label: 'Copy', quote: false, status: 'Open', statusClass: 'sw-status is-run', done: false, reply: 'Trying “Stoneware for slow mornings.” in v4.' },
+      { n: 2, when: '2 h ago', body: 'The mug photo looks too dark on my phone.', spec: 'home.featured.card-1.image', label: 'Design', quote: false, status: 'Open', statusClass: 'sw-status is-run', done: false, reply: '' },
+      { n: 3, when: '1 h ago', body: 'Could we offer gift wrapping at checkout?', spec: 'checkout.options', label: 'Needs quote', quote: true, status: 'Quote sent', statusClass: 'sw-status is-warn', done: false, reply: 'This is outside the agreed scope, so I have sent a quote for it.' },
+      { n: 4, when: 'Oct 30', body: 'The subscribe button is hard to read.', spec: 'home.newsletter.button', label: 'Design', quote: false, status: 'Resolved in v3', statusClass: 'sw-status is-pass', done: true, reply: '' }
+    ];
+    var target = { 1: 'home.hero.heading', 2: 'home.featured.card-1.image', 3: 'none', 4: 'home.newsletter.button' };
+    var pick = function (n) { self.setState({ active: n }); };
+    return {
+      themeClass: this.props.dark ? 'sw dark' : 'sw',
+      dark: !!this.props.dark,
+      yes: true,
+      active: active,
+      sel: target[active],
+      pick: pick,
+      threads: data.map(function (t) {
+        var on = t.n === active;
+        return Object.assign({}, t, {
+          hasReply: !!t.reply,
+          pressed: on ? 'true' : 'false',
+          border: on ? 'var(--sw-accent)' : 'var(--sw-border)',
+          pinClass: 'sw-pin' + (t.done ? ' is-done' : ''),
+          labelClass: 'sw-label' + (t.quote ? ' is-quote' : ''),
+          select: function () { pick(t.n); }
+        });
+      }),
+      deskPressed: this.state.mobile ? 'false' : 'true',
+      mobPressed: this.state.mobile ? 'true' : 'false',
+      toDesk: function () { self.setState({ mobile: false }); },
+      toMob: function () { self.setState({ mobile: true }); },
+      previewMax: this.state.mobile ? '390px' : '100%'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Specwright · Hale &amp; Field · Spec</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="store.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="{{themeClass}}" style="min-height: 100vh; background: var(--sw-bg); color: var(--sw-text); font-family: var(--sw-font-sans)">
+
+<header style="background: var(--sw-surface); border-bottom: 1px solid var(--sw-border)">
+  <div class="sw-wrap sw-bar">
+    <a href="Projects.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none" aria-label="Specwright home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" stroke="currentColor" stroke-width="2"></path><rect x="9" y="9" width="6" height="6" style="fill: var(--sw-accent)"></rect></svg>
+      <span style="font-weight: 600; font-size: 15px">Northline Studio</span>
+    </a>
+    <nav class="sw-nav" aria-label="Workspace" style="flex: 1">
+      <a href="Projects.dc.html" aria-current="page">Projects</a>
+      <a href="#sections">Sections</a>
+      <a href="#settings">Settings</a>
+    </nav>
+    <button class="sw-btn sw-btn--ghost sw-btn--icon" type="button" aria-label="Account: Ana Ruiz" style="border-radius: 50%; background: var(--sw-surface-2); color: var(--sw-text); font-size: 12px; font-weight: 600">AR</button>
+  </div>
+  <div class="sw-wrap" style="display: flex; flex-direction: column; gap: 12px; padding-top: 16px">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+      <div style="display: flex; align-items: baseline; gap: 12px; min-width: 0">
+        <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.01em">Hale &amp; Field</h1>
+        <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">spec v4</span>
+      </div>
+      <a class="sw-btn sw-btn--primary" href="Build.dc.html">Build</a>
+    </div>
+    <nav class="sw-tabs" aria-label="Project" style="border-bottom: 0">
+      <a href="Spec.dc.html" aria-current="page">Spec</a>
+      <a href="Build.dc.html">Builds</a>
+      <a href="Review.dc.html">Review</a>
+      <a href="#settings">Settings</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sw-wrap" style="display: flex; flex-wrap: wrap; gap: 24px; padding-top: 24px; padding-bottom: 48px; align-items: flex-start">
+
+  <aside style="flex: 1 1 220px; max-width: 100%; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; padding: 0 8px; font-size: 13px; font-weight: 500; color: var(--sw-text-3)">Pages</h2>
+      <ul class="sw-tree">
+        <li><button type="button" aria-pressed="false" style="color: var(--sw-text); font-weight: 500">Home</button></li>
+        <sc-for list="{{tree}}" as="t" hint-placeholder-count="9">
+          <li><button type="button" class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}"><span>{{t.label}}</span></button></li>
+        </sc-for>
+        <li><button type="button" aria-pressed="false">Collection</button></li>
+        <li><button type="button" aria-pressed="false">Product</button></li>
+        <li><button type="button" aria-pressed="false">Cart</button></li>
+        <li><button type="button" aria-pressed="false">Checkout</button></li>
+        <li><button type="button" aria-pressed="false">About</button></li>
+      </ul>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <h2 style="margin: 0; padding: 0 8px; font-size: 13px; font-weight: 500; color: var(--sw-text-3)">Markets</h2>
+      <ul class="sw-tree">
+        <li><button type="button" aria-pressed="false"><span>United States</span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">USD · en</span></button></li>
+        <li><button type="button" aria-pressed="false"><span>European Union</span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">EUR · de fr</span></button></li>
+        <li><button type="button" aria-pressed="false"><span>United Kingdom</span><span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">GBP · en</span></button></li>
+      </ul>
+    </div>
+  </aside>
+
+  <section aria-label="Reference render" style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+      <div class="sw-seg" role="group" aria-label="Viewport">
+        <button type="button" aria-pressed="{{deskPressed}}" onClick="{{toDesk}}">Desktop</button>
+        <button type="button" aria-pressed="{{mobPressed}}" onClick="{{toMob}}">Mobile</button>
+      </div>
+      <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--sw-text-2)">Market
+        <select class="sw-input" style="width: auto; height: 32px; font-size: 13px">
+          <option>United States · USD</option>
+          <option>European Union · EUR</option>
+          <option>United Kingdom · GBP</option>
+        </select>
+      </label>
+    </div>
+    <div style="height: 780px; overflow: auto; background: var(--sw-surface-2); border: 1px solid var(--sw-border); border-radius: var(--sw-radius-lg); padding: 44px 24px 24px">
+      <div style="margin: 0 auto; width: 100%; max-width: {{previewMax}}; box-shadow: var(--sw-shadow-1)">
+        <dc-import name="StorePreview" selected="{{sel}}" dark="{{dark}}" hint-size="100%,1460px"></dc-import>
+      </div>
+    </div>
+  </section>
+
+  <aside aria-labelledby="insp" style="flex: 1 1 280px; max-width: 100%; display: flex; flex-direction: column; gap: 20px">
+    <div class="sw-card" style="padding: 20px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span class="sw-tag" style="align-self: flex-start">{{sel}}</span>
+        <h2 id="insp" style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 600">{{info.type}}</h2>
+      </div>
+      <sc-for list="{{info.fields}}" as="f" hint-placeholder-count="4">
+        <div class="sw-field">
+          <label for="{{f.id}}">{{f.label}}</label>
+          <sc-if value="{{f.long}}" hint-placeholder-val="{{ false }}">
+            <textarea id="{{f.id}}" class="sw-input" rows="3" value="{{f.value}}"></textarea>
+          </sc-if>
+          <sc-if value="{{f.short}}" hint-placeholder-val="{{ true }}">
+            <input id="{{f.id}}" class="sw-input" value="{{f.value}}">
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div class="sw-card" style="padding: 20px; display: flex; flex-direction: column; gap: 14px">
+      <h3 style="margin: 0; font-size: 14px; font-weight: 600">Targets</h3>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+          <span style="font-size: 14px">WooCommerce</span>
+          <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">{{info.woo}}</span>
+        </div>
+        <span class="sw-status is-pass">Built</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+          <span style="font-size: 14px">Shopify</span>
+          <span style="font-family: var(--sw-font-mono); font-size: 12px; color: var(--sw-text-3)">{{info.shop}}</span>
+        </div>
+        <span class="sw-status is-idle">Not enabled</span>
+      </div>
+    </div>
+  </aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: 'home.hero', mobile: false };
+  }
+  renderVals() {
+    var self = this;
+    var sel = this.state.sel;
+    var F = function (label, value, long) { return { id: 'f-' + label.toLowerCase().replace(/[^a-z]+/g, '-'), label: label, value: value, long: !!long, short: !long }; };
+    var specs = {
+      'home.header': { type: 'Header', fields: [F('Logo', 'Hale & Field (wordmark)'), F('Menu', 'main · 4 links')], woo: 'parts/header.html', shop: 'sections/header.liquid' },
+      'home.hero': { type: 'Hero · split', fields: [F('Heading', 'Stoneware, made slowly.'), F('Lead', 'Small-batch tableware, thrown and glazed in our Bristol studio. Shipped to the UK, EU and US.', true), F('Button label', 'Shop the collection'), F('Button link', '/shop'), F('Image', 'hero-bowls.jpg')], woo: 'patterns/hero.php', shop: 'sections/hero.liquid' },
+      'home.hero.heading': { type: 'Heading 1', fields: [F('Text · en', 'Stoneware, made slowly.'), F('Text · de', 'Steinzeug, langsam gemacht.'), F('Text · fr', 'Du grès, fait lentement.')], woo: 'core/heading in patterns/hero.php', shop: 'setting heading in sections/hero.liquid' },
+      'home.featured': { type: 'Product grid', fields: [F('Heading', 'The everyday set'), F('Source', 'Collection: everyday'), F('Products', '3'), F('Columns', '3, 2 on mobile')], woo: 'patterns/product-grid.php', shop: 'sections/featured-collection.liquid' },
+      'home.story': { type: 'Media and text', fields: [F('Heading', 'Fired twice, used daily.'), F('Body', 'Every piece is thrown by hand, bisque fired, glazed, then fired again. Dishwasher safe, made to be used.', true), F('Link', 'Read our story → /about'), F('Image', 'kiln-stack.jpg')], woo: 'patterns/story.php', shop: 'sections/image-with-text.liquid' },
+      'home.newsletter': { type: 'Newsletter', fields: [F('Heading', 'Kiln notes, once a month.'), F('List', 'kiln-notes'), F('Button label', 'Subscribe')], woo: 'patterns/newsletter.php', shop: 'sections/newsletter.liquid' },
+      'home.footer': { type: 'Footer', fields: [F('Address', 'Hale & Field Studio, Bristol'), F('Links', 'Shipping, Returns, Privacy, Accessibility')], woo: 'parts/footer.html', shop: 'sections/footer.liquid' }
+    };
+    var items = [
+      ['home.header', 'header', 1],
+      ['home.hero', 'hero', 1],
+      ['home.hero.heading', 'heading', 2],
+      ['home.featured', 'featured', 1],
+      ['home.story', 'story', 1],
+      ['home.newsletter', 'newsletter', 1],
+      ['home.footer', 'footer', 1]
+    ];
+    return {
+      themeClass: this.props.dark ? 'sw dark' : 'sw',
+      dark: !!this.props.dark,
+      sel: sel,
+      info: specs[sel],
+      tree: items.map(function (it) {
+        return {
+          label: it[1],
+          cls: 'sw-d' + it[2],
+          pressed: sel === it[0] ? 'true' : 'false',
+          pick: function () { self.setState({ sel: it[0] }); }
+        };
+      }),
+      deskPressed: this.state.mobile ? 'false' : 'true',
+      mobPressed: this.state.mobile ? 'true' : 'false',
+      toDesk: function () { self.setState({ mobile: false }); },
+      toMob: function () { self.setState({ mobile: true }); },
+      previewMax: this.state.mobile ? '390px' : '100%'
+    };
+  }
+}
+</script>
+</body>
+</html>
